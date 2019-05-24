@@ -1,0 +1,280 @@
+<div class="container-fluid mobile-header">
+  <div class="container mobile-container">
+    <div class="row">
+      <div class="col-xs-5 mobile-menu">
+        <a href="/" sidebarjs-toggle>
+          <img src="/images/newtheme/menu-icon.png" alt="menu-icon">
+        </a>
+      </div>
+      <div class="col-xs-2 mobile-logo">
+        <a href="/">
+          <img src="/images/newtheme/form-logo.png" alt="form-logo">
+        </a>
+      </div>
+      <div class="col-xs-5 mobile-profile">
+        <div uib-dropdown ng-if="Auth.isAuthenticated()">
+          <a id="mobile-avatar-section" class="avatar-section-btn" href="#" uib-dropdown-toggle><img ng-if="!Auth._currentUser.profilephoto" src="/images/newtheme/user.png" alt="user-logo" class="user-avatar"><img ng-if="Auth._currentUser.profilephoto" src={{Auth._currentUser.profilephoto}} class="user-avatar"></a>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="mobile-avatar-section">
+              <li role="menuitem" ng-if="Auth.isAuthenticated()" ui-sref-active="active"><a ui-sref-if ="Auth.isAuthenticated()" ui-sref="user({id: userInfo.id})">My Page</a></li>
+              <li role="menuitem" ng-if="Auth.isAuthenticated()" ui-sref-active="active"><a href="javascript:void(0)" ng-click="logout(); ">Logout</a></li>
+            </ul>
+        </div>
+        <div ng-if="!Auth.isAuthenticated()">
+          <a id="mobile-avatar-section" class="avatar-section-btn" href="javascript:void(0)" sign-in-modal><img src="/images/newtheme/user.png" alt="user-logo" class="user-avatar"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div ng-repeat="banner in logincms" class="col-xs-12 text-center">
+      <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.content)"></div>
+    </div>
+  </div>
+  <div class="row navbar-background mobile-header">
+    <div class="container custom-container">
+      <div class="header-main-menu">
+        <ul class="nav navbar-nav navbar-left">
+          <li ng-if ="!Auth.isAuthenticated()" >
+            <a ui-sref="home" ui-sref-opts="{reload: true}" sign-in-modal>
+              <img class="outline" src="/images/newtheme/heart-o.png" alt="heart-logo">
+              <img class="fill" src="/images/newtheme/heart-f.png" alt="heart-logo">
+              Interests
+            </a>
+          </li>
+          <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false" >
+            <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+              <img class="outline" src="/images/newtheme/heart-o.png" alt="heart-logo">
+              <img class="fill" src="/images/newtheme/heart-f.png" alt="heart-logo">
+              Interests
+            </a>
+          </li>
+          <li ng-class="{active: $state.current.name == 'home'}" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true" >
+            <a href="/">
+              <img class="outline" src="/images/newtheme/heart-o.png" alt="heart-logo">
+              <img class="fill" src="/images/newtheme/heart-f.png" alt="heart-logo">
+              Interests
+            </a>
+          </li>
+          <li ng-if="!Auth.isAuthenticated()">
+            <a ui-sref="home" ui-sref-opts="{reload: true}" sign-in-modal>
+              <img class="outline" src="/images/newtheme/chat-o.png">
+              <img class="fill" src="/images/newtheme/chat-f.png">
+              Chats
+            </a>
+          </li>
+          <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+            <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+              <img class="outline" src="/images/newtheme/chat-o.png">
+              <img class="fill" src="/images/newtheme/chat-f.png">
+              Chats
+            </a>
+          </li>
+          <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+            <a ui-sref="messages({tab: 'hails'})">
+              <img class="outline" src="/images/newtheme/chat-o.png">
+              <img class="fill" src="/images/newtheme/chat-f.png">
+              <span class="notification-counter"
+                ng-show="header.notifications.unread_messages + header.notifications.unread_hails">{{header.notifications.unread_messages + header.notifications.unread_hails}}
+              </span>
+              Chats
+            </a>
+          </li>
+          <li ng-if="!Auth.isAuthenticated()">
+            <a ui-sref="home" ui-sref-opts="{reload: true}" sign-in-modal>
+              <img class="outline" src="/images/newtheme/question-o.png">
+              <img class="fill" src="/images/newtheme/question-f.png">
+              Questions
+            </a>
+          </li>
+          <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+            <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+              <img class="outline" src="/images/newtheme/question-o.png">
+              <img class="fill" src="/images/newtheme/question-f.png">
+              Questions
+            </a>
+          </li>
+          <li ui-sref-active="active" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+            <a ui-sref="answer-new({radius: 'all'})">
+              <img class="outline" src="/images/newtheme/question-o.png">
+              <img class="fill" src="/images/newtheme/question-f.png">
+              <span class="notification-counter"
+                ng-show="header.notifications.new_questions">{{header.notifications.new_questions}}
+              </span>
+              Questions
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a href="#!/help" class= "helps" id="help">
+              <img class="outline" src="/images/newtheme/help-o.png">
+              <img class="fill" src="/images/newtheme/help-f.png">
+              Help
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="theme-sidebar">
+    <sidebarjs id="sidebar">
+      <div class="sidebar-head">{{(radius|filter:{id: $state.params.radius_id })[0].id ? (radius|filter:{id: $state.params.radius_id })[0].name : 'Find Someone' }}</div>
+      <nav>
+        <ul class="sidebar-menu">
+          <li ng-repeat="radius in radius" ng-if="!Auth.isAuthenticated()"><a  ng-class="{'hide' : $index == 0}" sidebarjs-toggle href="#" ui-sref="home" ui-sref-opts="{reload: true}" sign-in-modal>{{radius.id ? radius.name : 'Find Someone'}}</a></li>
+          <li ng-repeat="radius in radius" ng-if="Auth.isAuthenticated()"><a ng-class="{'hide' : $index == 0}" sidebarjs-toggle href="#" ng-click="$state.params.radius_id = radius.id" ui-sref="users({radius_id: $state.params.radius_id})" ui-sref-opts="{reload: true}">{{radius.id ? radius.name : 'Find Someone'}}</a></li>
+        </ul>
+      </nav>
+    </sidebarjs>
+  </div>
+</div>
+<div class="container-fluid navbar-background desktop-header">
+  <div class="container custom-container">
+    <div class="navbar-header" ng-if ="!Auth.isAuthenticated()">
+      <a class="navbar-brand" href="/">
+        <img src="/images/wellmet-icon.png" alt="Wellmet">
+        <div ng-repeat="banner in logincms" class="cms-section">
+          <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.content)"></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="navbar-header" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+      <a class="navbar-brand" ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+        <img src="/images/wellmet-icon.png" alt="Wellmet">
+        <div ng-repeat="banner in logincms" class="cms-section">
+          <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.content)"></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="navbar-header" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+      <a class="navbar-brand" href="/">
+        <img src="/images/wellmet-icon.png" alt="Wellmet">
+        <div ng-repeat="banner in logincms" class="cms-section">
+          <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.content)"></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-main-menu">
+      <ul class="nav navbar-nav navbar-left">
+        <li ng-if ="!Auth.isAuthenticated()" >
+          <a ui-sref="home" ui-sref-opts="{reload: true}">
+            <img class="outline" src="/images/newtheme/heart-o.png" alt="heart-logo">
+            <img class="fill" src="/images/newtheme/heart-f.png" alt="heart-logo">
+            Interests
+          </a>
+        </li>
+        <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false" >
+          <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+            <img class="outline" src="/images/newtheme/heart-o.png" alt="heart-logo">
+            <img class="fill" src="/images/newtheme/heart-f.png" alt="heart-logo">
+            Interests
+          </a>
+        </li>
+        <li ng-class="{active: $state.current.name == 'home'}" ng-if="Auth.isAuthenticated() && Auth._currentUser.policy==true" >
+          <a href="/">
+            <img class="outline" src="/images/newtheme/heart-o.png" alt="heart-logo">
+            <img class="fill" src="/images/newtheme/heart-f.png" alt="heart-logo">
+            Interests
+          </a>
+        </li>
+        <li ng-if="!Auth.isAuthenticated()">
+          <a ui-sref="home" ui-sref-opts="{reload: true}">
+            <img class="outline" src="/images/newtheme/chat-o.png">
+            <img class="fill" src="/images/newtheme/chat-f.png">
+            Chats
+          </a>
+        </li>
+        <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+          <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+            <img class="outline" src="/images/newtheme/chat-o.png">
+            <img class="fill" src="/images/newtheme/chat-f.png">
+            Chats
+          </a>
+        </li>
+        <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+          <a ui-sref="messages({tab: 'hails'})">
+            <img class="outline" src="/images/newtheme/chat-o.png">
+            <img class="fill" src="/images/newtheme/chat-f.png">
+            <span class="notification-counter"
+              ng-show="header.notifications.unread_messages + header.notifications.unread_hails">{{header.notifications.unread_messages + header.notifications.unread_hails}}
+            </span>
+            Chats
+          </a>
+        </li>
+        <li ng-if="!Auth.isAuthenticated()">
+          <a ui-sref="home" ui-sref-opts="{reload: true}">
+            <img class="outline" src="/images/newtheme/question-o.png">
+            <img class="fill" src="/images/newtheme/question-f.png">
+            Questions
+          </a>
+        </li>
+        <li ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+          <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}">
+            <img class="outline" src="/images/newtheme/question-o.png">
+            <img class="fill" src="/images/newtheme/question-f.png">
+            Questions
+          </a>
+        </li>
+        <li ui-sref-active="active" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+          <a ui-sref="answer-new({radius: 'all'})">
+            <img class="outline" src="/images/newtheme/question-o.png">
+            <img class="fill" src="/images/newtheme/question-f.png">
+            <span class="notification-counter"
+              ng-show="header.notifications.new_questions">{{header.notifications.new_questions}}
+            </span>
+            Questions
+          </a>
+        </li>
+        <li ui-sref-active="active" ng-if="!Auth.isAuthenticated()">
+          <a ui-sref="home" ui-sref-opts="{reload: true}" class= "helps" id="help">
+            <img class="outline" src="/images/newtheme/help-o.png">
+            <img class="fill" src="/images/newtheme/help-f.png">
+            Help
+          </a>
+        </li>
+        <li ui-sref-active="active" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+          <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}" class= "helps" id="help">
+            <img class="outline" src="/images/newtheme/help-o.png">
+            <img class="fill" src="/images/newtheme/help-f.png">
+            Help
+          </a>
+        </li>
+        <li ui-sref-active="active" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+          <a href="#!/help" class= "helps" id="help">
+            <img class="outline" src="/images/newtheme/help-o.png">
+            <img class="fill" src="/images/newtheme/help-f.png">
+            Help
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right header-right-section">
+        <li uib-dropdown class="find-someone" ng-if="!Auth.isAuthenticated()">
+          <a id="find-someone" class="find-someone-btn" href="javascript:void(0);" uib-dropdown-toggle>{{(radius|filter:{id: $state.params.radius_id })[0].id ? (radius|filter:{id: $state.params.radius_id })[0].name : 'Find Someone' }}<img class="find-icon" src="/images/newtheme/find-arrow.png" /></a>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="find-someone">
+            <li role="menuitem" ng-repeat="radius in radius"><a ng-class="{'hide' : $index == 0}" ui-sref="home" ui-sref-opts="{reload: true}" ng-click="$state.params.radius_id = radius.id">{{radius.id ? radius.name : 'Find Someone'}}</a></li>
+          </ul>
+        </li>
+        <li uib-dropdown class="find-someone" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">
+          <a id="find-someone" class="find-someone-btn" href="javascript:void(0);" uib-dropdown-toggle>{{(radius|filter:{id: $state.params.radius_id })[0].id ? (radius|filter:{id: $state.params.radius_id })[0].name : 'Find Someone' }}<img class="find-icon" src="/images/newtheme/find-arrow.png" /></a>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="find-someone">
+            <li role="menuitem" ng-repeat="radius in radius"><a ng-class="{'hide' : $index == 0}" ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}" ng-click="$state.params.radius_id = radius.id">{{radius.id ? radius.name : 'Find Someone'}}</a></li>
+          </ul>
+        </li>
+        <li uib-dropdown class="find-someone" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">
+          <a id="find-someone" class="find-someone-btn" href="javascript:void(0);" uib-dropdown-toggle>{{(radius|filter:{id: $state.params.radius_id })[0].id ? (radius|filter:{id: $state.params.radius_id })[0].name : "Find Someone" }}<img class="find-icon" src="/images/newtheme/find-arrow.png" /></a>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="find-someone">
+            <li role="menuitem" ng-repeat="radius in radius"><a ng-class="{'hide' : $index == 0}" ui-sref="users({radius_id: $state.params.radius_id})" ui-sref-opts="{reload: true}" ng-click="($state.params.radius_id = radius.id)">{{radius.id ? radius.name : 'Find Someone'}}</a></li>
+          </ul>
+        </li>
+        <li uib-dropdown class="avatar-section" ng-if="Auth.isAuthenticated()">
+          <a id="avatar-section" class="avatar-section-btn" href="javascript:void(0);" uib-dropdown-toggle> <img ng-if="!Auth.isAuthenticated() || !Auth._currentUser.profilephoto" src="/images/newtheme/user.png" alt="user-logo" class="user-avatar"><img ng-if="Auth.isAuthenticated() && Auth._currentUser.profilephoto" src={{Auth._currentUser.profilephoto}} class="user-avatar"> My Profile<img class="profile-icon" src="/images/newtheme/profile-arrow.png" /></a>
+          <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="avatar-section" ng-if="Auth.isAuthenticated()">
+            <li role="menuitem" ng-if="Auth.isAuthenticated()" ui-sref-active="active"><a ui-sref-if ="Auth.isAuthenticated()" ui-sref="user({id: userInfo.id})">My Page</a></li>
+            <li role="menuitem" ng-if="Auth.isAuthenticated()" ui-sref-active="active"><a href="javascript:void(0)" ng-click="logout(); ">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

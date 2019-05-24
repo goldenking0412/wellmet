@@ -1,0 +1,21 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content">
+    <!-- extra div for emulating position:fixed of the menu -->
+    <div class="st-content-inner">
+        <div class="profile-section">
+            <div class="container profile-container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-3 profile-sidebar">
+                        <div class="cover profile" ng-include="'shared/templates/user-sub-menu.html'"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-9 profile-rightsection">
+                        <div class="profile-interest-cat" ng-include="'shared/templates/add-interest-side-panel.html'"></div>
+                        <div class="profile-add-interest" ng-include="'shared/templates/add-interest-panel.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- /st-content-inner -->
+</div>
+<!-- /st-content -->

@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<% @logincms.each do |logincm| %>
+	<div class="ck-editor-area">
+	<%= raw logincm.content %>
+	</div>
+<% end %>

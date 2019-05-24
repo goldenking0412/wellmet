@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Interests Users Shares</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_interest_shares.each do |user_interest_share| %>
+      <tr>
+        <td><%= link_to 'Show', user_interest_share %></td>
+        <td><%= link_to 'Edit', edit_user_interest_share_path(user_interest_share) %></td>
+        <td><%= link_to 'Destroy', user_interest_share, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Interests users share', new_user_interest_share_path %>

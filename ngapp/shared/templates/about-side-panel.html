@@ -1,0 +1,59 @@
+<div class="panel panel-default about-side-panel">
+  <div class="panel-heading panel-heading-gray title">
+    About
+  </div>
+
+  <div class="panel-body"
+    ng-style="{'background-color': vm.interest.category.color}">
+    <p ng-hide="vm.editingLocation">
+      <i class="fa fa-map-marker fa-icon"></i>
+      <span class="fa-label">
+        {{vm.user.location || 'Unspecified'}}
+        <button class="btn btn-gray btn-xs btn-tiny"
+          ng-click="vm.editingLocation = true"
+          ng-if="vm.user.id == userInfo.id">
+          Edit
+        </button>
+      </span>
+    </p>
+    <form ng-show="vm.editingLocation"
+      ng-submit="vm.User.update(vm.user.id, {user: {location: vm.user.location}});
+                 vm.editingLocation = false"
+      ng-if="vm.user.id == userInfo.id">
+      <div class="input-group input-group-sm">
+        <input ng-model="vm.user.location" class="form-control">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-default">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+    <p>
+      <img src="/images/points.png" width="20">
+      <span class="fa-label">{{vm.user.points}}</span>
+    </p>
+    <p ng-hide="vm.editingBio">
+      {{vm.user.bio || 'No bio set'}}
+      &nbsp;
+      <button class="btn btn-gray btn-xs btn-tiny"
+        ng-click="vm.editingBio = true"
+        ng-if="vm.user.id == userInfo.id">
+        Edit
+      </button>
+    </p>
+    <form ng-show="vm.editingBio"
+      ng-submit="vm.User.update(vm.user.id, {user: {bio: vm.user.bio}});
+                 vm.editingBio = false"
+      ng-if="vm.user.id == userInfo.id">
+      <div class="input-group input-group-sm">
+        <input ng-model="vm.user.bio" class="form-control">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-default">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

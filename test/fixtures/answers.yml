@@ -1,0 +1,21 @@
+batman:
+  user: superman
+  question: who_am_i
+  text: Batman
+  appreciated: true
+
+ironman:
+  user: captain_america
+  question: who_am_i
+  text: Iron Man
+
+batcave:
+  user: superman
+  question: where_do_i_live
+  text: Batcave
+  appreciated: true
+
+castle:
+  user: captain_america
+  question: where_do_i_live
+  text: Castle

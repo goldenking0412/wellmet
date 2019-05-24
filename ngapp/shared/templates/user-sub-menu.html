@@ -1,0 +1,33 @@
+<div class="cover-info">
+  <div class="avatar" style="border-color: {{(categories|filter:{id: vm.user.top_category_id}:true)[0].color}}">
+    <div ng-if="vm.user.profilephoto && !picFile" class="avatar-inner">
+      <img ng-src="{{vm.user.profilephoto}}" class="img-circle" alt="profile_image" width="110" />
+    </div>
+    <div ng-if="picFile" class="avatar-inner">
+      <img ng-src="{{croppedDataUrl}}" class="img-circle" alt="profile_image" width="110" />
+    </div>
+    <div ng-if="!picFile && !vm.user.profilephoto" class="avatar-inner">
+      <img ng-src="/images/user/small/{{(categories|filter:{id: vm.user.top_category_id}:true)[0].image || 'none.png'}}" class="img-circle" alt="profile_image" width="110" />
+    </div>
+    <button ng-show="vm.user.id === userInfo.id" ngf-select ng-model="picFile" accept="image/*"><img src="/images/newtheme/photo-camera.png" alt="Upload Section" /></button>
+  </div>
+  <div ng-hide="!picFile" class="crop-section">
+    <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea"><img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''"></img-crop></div>
+    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+    <button class="corp-button" ui-sref="user({id: userInfo.id, image_url: croppedDataUrl,image_name: picFile.name})">SUBMIT</button>
+    <button class="corp-button" ng-click="picFile =''">CANCEL</button>
+  </div>
+  <div class="profile-info">
+    <h2 class="profile-head">{{vm.user.username}}</h2>
+    <p class="user-location">{{vm.user.location}}</p>
+    <div class="count-icon">
+      <img src="/images/newtheme/batch.png">
+      <span class="count-down"><span>{{vm.user.points}}</span></span>
+    </div>
+  </div>
+  <ul class="cover-nav profile-menu" ng-if="vm.user.id == userInfo.id">
+      <li ui-sref-active="active" class="normal-icon"><a ui-sref="user({id: userInfo.id})"><img src="/images/user/profile/user-blue.png" class="active" alt="My Profile" /><img src="/images/user/profile/user-grey.png" class="grey" alt="My Profile" /><span>My Profile</span></a></li>
+      <li ui-sref-active="active" class="normal-icon"><a ui-sref="questions"><img src="/images/user/profile/questions-grey.png" class="grey" alt="My Questions" /><img src="/images/user/profile/questions-blue.png" class="active" alt="My Questions" /><span>My Questions</span></a></li>
+      <li ng-class="{'active': vm.settingsstep == 1}"; class="normal-icon"><a ui-sref="user-edit({id: vm.user.id, current_step: 0})"><img src="/images/user/profile/settings-grey.png" class="grey" alt="Settings" /><img src="/images/user/profile/settings-blue.png" class="active" alt="Settings" /><span>Settings</span></a></li>
+  </ul>
+</div>

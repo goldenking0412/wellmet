@@ -1,0 +1,66 @@
+<div class="panel panel-default share clearfix-xs locate-settings">
+  <div class="panel-body">
+    <form ng-submit="vm.saveLocalSetting(vm.userSetting)">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 left-tab">
+          <div class="form-group-label">
+              <select  class="input-text" id="radius_id" ng-model="vm.userSetting.radius_id" name="gender">
+                <option  ng-repeat="radius in radius" ng-hide="{{radius.id}} ==0" value="{{radius.id}}">{{radius.name}}</option>
+              </select>
+              <span for="search" class="floating-label">Search within</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 right-tab">
+          <div class="form-group-label">
+            <input type="text" class="input-text" required ng-model="vm.userSetting.common_interests_count" autocapitalize="off" autocorrect="off"/>
+            <span for="numberinterest" class="floating-label">Number of Common Interest</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 left-tab">
+            <div class="form-group-label">
+              <select  class="input-text" ng-model="vm.userSetting.gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="both">Both</option>
+              </select>
+              <span for="Gender" class="floating-label">Gender</span>
+            </div>
+        </div>
+      </div>
+      <div class="age-group-list">
+        <div>
+            <h5 class="btn-gray-text">Select Age Group ( s )</h5> <span class="find-notes">Users 19 & under can only find users within the same age group</span>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="age in vm.ages" ng-show="(vm.user.age <= 19 && age.id != '19u') || vm.user.age >= 19 && age.id == '19u'">
+          <div class="checkbox checkbox-inline">
+            <input type="checkbox"
+              ng-model="vm.userSetting.ages[age.id]"
+              id="age-{{age.id}}"
+              ng-disabled="(vm.user.age <= 19 && age.id != '19u') || vm.user.age >= 19 && age.id == '19u'"
+              ng-checked="false">
+            <label for="age-{{age.id}}">
+              {{age.name || age.id}}
+            </label>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="age in vm.ages" ng-hide="(vm.user.age <= 19 && age.id != '19u') || vm.user.age >= 19 && age.id == '19u'">
+          <div class="checkbox checkbox-inline">
+            <input type="checkbox"
+              ng-model="vm.userSetting.ages[age.id]"
+              id="age-{{age.id}}"
+            ng-disabled="(vm.user.age <= 19 && age.id != '19u') || vm.user.age >= 19 && age.id == '19u'"
+            >
+            <label for="age-{{age.id}}">
+              {{age.name || age.id}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="general-btn">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 locate-save">
+          <button type="submit" class="btn btn-primary">Save & Find</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content">
+    <!-- extra div for emulating position:fixed of the menu -->
+    <div class="st-content-inner">
+        <div class="profile-section">
+            <div class="container profile-container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-3 profile-sidebar">
+                        <div class="cover profile" ng-include="'shared/templates/user-sub-menu.html'"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-9 profile-rightsection" wm-isotope>
+                        <div class="profile-rightsection-inner">
+                            <div class="row">
+                                <div class="col-xs-12 profile-category">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-3 item" ng-repeat="userInterest in vm.userInterests" ng-init="interest = (vm.interests|filter:{id: userInterest.interest_id}:true)[0];category = (categories|filter:{id: interest.category_id}:true)[0]">
+                                          <div class="timeline-block flip-container">
+                                            <div ng-class="{'flip': vm.isOpen(userInterest)}" class="locked">
+                                              <div class="interest-container front">
+                                                <div class="interest-thumbnail">
+                                                  <img src="/images/categories/bgcategory/{{category.image}}" class="img-responsive thumbnail-bg" alt={{category.name}} />
+                                                  <a href="javascript:void(0);"
+                                                  class="thumbnail-icon">
+                                                    <img class="img-responsive" src="/images/categories/logos/{{category.image.replace('-sm.png')}}" alt="{{category.name}}" />
+                                                  </a>
+                                                </div>
+                                                <div class="interest-heading" ng-class="{'panel-heading-black': interest.locked }">
+                                                  <div class="interest-name">
+                                                    <h5>{{vm.isOpen(userInterest) ? interest.name : 'Locked'}}</h5>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="front back" ng-show="vm.isOpen(userInterest)">
+                                                <h5>{{vm.isOpen(userInterest) ? interest.name : 'Locked'}}</h5>
+                                                <p>{{vm.isOpen(userInterest) ? userInterest.comment : 'Locked'}}</p>
+                                                <div class="remove-interest" ng-show="userInfo.id == vm.user.id">
+                                                  <i class="fa fa-trash-o remove-interest-icon" ng-click="vm.userinterest = userInterest; vm.openDeleteInterestConfirmModal()" aria-hidden="true"></i>
+                                                </div>
+                                                <a class="intview-btn"
+                                                href="javascript:void(0);" ng-click="vm.isOpen(userInterest) && $state.go('interest', {id: interest.id})" class="thumbnail-icon">View</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-xs-12 signup fb-header">
+                                    <div class="timeline row" ng-show="vm.user.provider && vm.user.policy == false && vm.user.id == Auth._currentUser.id">
+                                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-spacing">
+                                        <div class="timeline-block">
+                                          <div class="panel panel-default" id="personalinfo">
+                                            <div class="panel-body text">
+                                              <ul class="icon-list icon-list-block text-center signup-steps">
+                                                <li class="add-tab active" ng-class="{active: vm.activeStep == 1}">
+                                                  <span class="list-num">1</span>
+                                                  <span class="text-center list-field active" ng-class="{active: vm.activeStep == 1}" id="pointer">Add Interest</span>
+                                                </li>
+                                                <li ng-class="{active: vm.activeStep == 2}" class="personal-tab">
+                                                  <span class="list-num">2</span>
+                                                  <span class="text-center list-field" ng-class="{active: vm.activeStep == 2}" id="pointer">Personal Information</span>
+                                                </li>
+                                                <li ng-class="{active: vm.activeStep == 3}" class="comp-tab">
+                                                  <span class="list-num">3</span>
+                                                  <span class="text-center list-field" ng-class="{active: vm.activeStep == 3}" id="pointer">Completed</span>
+                                                </li>
+                                              </ul>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="profile-add-interest" ng-include="'shared/templates/add-interest-side-panel.html'" ng-if="userInfo.id == vm.user.id"></div>
+                                  </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /st-content-inner -->
+</div>
+<!-- /st-content

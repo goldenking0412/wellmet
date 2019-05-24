@@ -1,0 +1,27 @@
+<div class="timeline row" id="add-interest-side-panel">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-spacing">
+    <div class="timeline-block">
+      <div class="panel panel-default interest-title-con">
+        <h4 class="interest-head">SELECT A CATEGORY TO ADD A NEW INTEREST</h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="interest-inner row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 interest-container container-spacing">
+    <div ng-repeat="category in categories|filter:{id: ''}"
+        ng-click="Auth.isAuthenticated() ? $state.go('user-interest-new', {category_id: category.id, interest_id: null}) : ((vm.categoryId = category.id) && vm.scrollToInterestForm())"
+        class="pointer-click col-xs-6 col-sm-6 col-md-4 col-lg-3 text-center interest-list">
+      <div class="interest-content" ng-show="Auth.isAuthenticated()" ng-class="{active : vm.activeMenu == category.id}">
+        <img src="/images/newtheme/active-icon.png" alt="game-logo" class="active-btn" />
+        <img class="category-icon-sm game-logo" ng-src="/images/categories/logos/{{category.image.replace('.png', '-sm.png')}}">
+        <p class="interest-title">{{category.name}}</p>
+      </div>
+      <div class="interest-content" ng-class="{active : vm.activeMenu === category.id}" ng-hide="Auth.isAuthenticated()" ng-click="vm.setActive(category.id)">
+        <img src="/images/newtheme/active-icon.png" alt="game-logo" class="active-btn" />
+        <img class="category-icon-sm game-logo" ng-src="/images/categories/logos/{{category.image.replace('.png', '-sm.png')}}">
+        <p class="interest-title">{{category.name}}</p>
+      </div>
+    </div>
+  </div>
+</div>

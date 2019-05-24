@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_setting.user_id %>
+</p>
+
+<p>
+  <strong>Radius:</strong>
+  <%= @user_setting.radius %>
+</p>
+
+<p>
+  <strong>Common interests count:</strong>
+  <%= @user_setting.common_interests_count %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @user_setting.gender %>
+</p>
+
+<p>
+  <strong>Ages:</strong>
+  <%= @user_setting.ages %>
+</p>
+
+<%= link_to 'Edit', edit_user_setting_path(@user_setting) %> |
+<%= link_to 'Back', user_settings_path %>

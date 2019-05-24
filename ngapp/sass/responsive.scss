@@ -1,0 +1,216 @@
+@import "variable";
+
+.before-login {
+  img {
+    width:100%;
+  }
+}
+
+.mobile-header {
+  .mobile-container {
+    padding-left:10px;
+    padding-right:10px;
+
+    .mobile-menu {
+      a {
+        float:left;
+        margin:15px 0;
+      }
+    }
+
+    .mobile-logo {
+      padding:0;
+    }
+
+    .mobile-profile {
+      @media #{$max-1024} {
+        line-height: 50px;
+      }
+      .avatar-section-btn {
+        @media #{$max-1024} {
+          float:right;
+          outline: none;
+          &:hover,
+          &:focus,
+          &:visited,
+          &:active {
+            background-color: transparent;
+          }
+        }
+      }
+      .dropdown {
+        .avatar-section-btn {
+          float:right;
+
+          img {
+            max-width:28px;
+            height:auto;
+            border-radius: 50%;
+          }
+          &:hover,
+          &:focus,
+          &:visited,
+          &:active {
+            background-color: transparent;
+          }
+        }
+
+        .dropdown-menu {
+          padding:0 ;
+          border:1px solid $header-dropdown-border;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+          min-width:135px;
+          box-shadow:none;
+          border-bottom:3px solid $navbar-bg;
+          right: 0;
+          top: 40px;
+
+          li {
+            border-bottom:1px solid $header-dropdown-border;
+
+            a {
+              padding: 6px 20px 2px 20px;
+              min-height:30px;
+              font-size: 14px;
+              color: $header-dropdown;
+              font-family: $roboto-font;
+              font-weight:normal;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+body {
+  .navbar {
+    @media #{$max-1024} {
+      height:120px;
+    }
+
+    .navbar-background {
+      .navbar-left {
+        @media #{$max-767} {
+          margin:0  auto;
+        }
+
+        li {
+          @media #{$max-767} {
+            float:left;
+            padding:0;
+          }
+
+          a {
+            @media #{$max-420} {
+              font-size:13px;
+              padding-bottom:9px;
+              display: block;
+              width: 100%;
+              padding:0 0 9px 0;
+              letter-spacing:1px;
+
+              &:hover, :focus {
+                padding:0 0 9px 0;
+              }
+            }
+
+            img {
+              @media #{$max-1024} {
+                padding-right:0;
+              }
+
+              @media #{$max-420} {
+                max-width:24px;
+                height:auto;
+              }
+            }
+          }
+        }
+      }
+
+      &.desktop-header {
+        @media #{$max-767} {
+          padding:0;
+        }
+
+        .custom-container  {
+          @media #{$max-1024} {
+            min-height:70px;
+            padding-left:25px;
+          }
+        }
+      }
+    }
+  }
+
+  .category-findout {
+    .timeline {
+      @media #{$max-1024} {
+        margin:0 !important;
+      }
+    }
+
+    .find-category {
+      .item {
+        @media #{$max-1024} {
+          width:100% !important;
+          margin:0 auto !important;
+        }
+
+        .timeline-block-interests {
+          @media #{$max-1024} {
+            width:50%;
+          }
+
+          @media #{$max-767} {
+            width:100%;
+          }
+
+          .category-list {
+            .game-logo {
+              @media #{$max-1024} {
+                bottom:100px;
+                top: auto;
+              }
+            }
+
+            .content-flow {
+              .content-icons {
+                @media #{$max-1024} {
+                  width:25%;
+                }
+
+                &.hover-icon {
+                  @media #{$max-1024} {
+                    width:25%;
+                    opacity:1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.dropdown-menu {
+  .active {
+    a {
+      background-color: #ffffff !important;
+      &:focus,
+      &:hover {
+        background-color: #ffffff !important;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .welmet-tab {
+   width:104% !important;
+    margin-left: -12px !important;
+  }
+}

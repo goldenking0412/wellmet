@@ -1,0 +1,46 @@
+<div class="panel panel-default share clearfix-xs blocklist">
+  <div class="panel-body">
+    <div class="alert alert-danger alert-dismissible"
+      ng-repeat="error in vm.errors track by $index">
+      <button type="button"
+        class="close"
+        ng-click="vm.errors.splice($index, 1)">
+        &times;
+      </button>
+      {{error}}
+    </div>
+    <form ng-submit="vm.blockUser()" class="form-horizontal">
+      <div class="form-group">
+        <label for="username" class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3">Username</label>
+        <div class="col-xs-10 col-sm-10 col-md-7 col-lg-6">
+          <input ng-model="vm.usernameToBlock" class="form-control" name="username">
+        </div>
+        <div class="general-btn">
+          <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 locate-save">
+           <button class="btn btn-primary btn-block">Add</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <br>
+    <ul class="list-group chat-users-list">
+      <li class="list-group-item no-side-borders"
+        ng-repeat="blockedUser in vm.blockedUsers">
+        <div class="media">
+          <div class="media-left">
+            <img class="media-object img-circle"
+              ng-src="{{blockedUser.top_category_id|profileImage}}">
+          </div>
+          <div class="media-body">
+            <div class="col-xs-8">
+              <h4>{{blockedUser.username}}</h4>
+            </div>
+            <div class="col-xs-4">
+              <button class="btn pull-right" ng-click="vm.unblockUser(blockedUser)">Unblock</button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

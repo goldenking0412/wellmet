@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Not found:</strong>
+  <%= @error.not_found %>
+</p>
+
+<p>
+  <strong>Internal server error:</strong>
+  <%= @error.internal_server_error %>
+</p>
+
+<%= link_to 'Edit', edit_error_path(@error) %> |
+<%= link_to 'Back', errors_path %>

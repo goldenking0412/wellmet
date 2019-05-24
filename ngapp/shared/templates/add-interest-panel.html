@@ -1,0 +1,77 @@
+<script type="text/ng-template" id="interestTypeaheadSuggestions.html">
+  <a ng-init="parentScope = $parent.$parent.$parent; vm = parentScope.vm">
+    <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+    <button class="btn like-btn"
+      ng-click="vm.like = true">
+      Like
+    </button>
+    <button class="btn hate-btn"
+      ng-click="vm.like = false">
+      Hate
+    </button>
+  </a>
+</script>
+<div class="timeline row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-spacing">
+    <div class="timeline-block" id="add-interest-panel" ng-show="$state.params.category_id || vm.categoryId">
+      <div class="panel panel-default interest-title-con">
+        <h4 class="interest-head">ADD INTEREST</h4>
+      </div>
+
+      <div class="interest-inner">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 add-interest-container container-spacing" ng-class="{'primary path-spacingss': vm.like == true, 'black path-spacing': vm.like == false,space : vm.interest.length > 0}">
+          <form ng-submit="vm.addInterest()" name="myForm " class="addinterest">
+            <div class="alert alert-danger alert-dismissible"
+              ng-repeat="error in vm.errors">
+              <button type="button"
+                class="close"
+                ng-click="vm.errors.splice($index, 1)">
+                &times;
+              </button>
+              {{error}}
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right logos-fix">
+              <img ng-src="/images/categories/logos/{{($root.categories|filter:{id: $state.params.category_id || vm.categoryId})[0].image}}" class="pull-right category-white-icon img-responsive add-logo">
+            </div>
+            <div class="add-interest-input col-xs-10 col-sm-10 col-md-10 col-lg-10">
+              <div class="form-group has-feedback" ng-class="{'primary path-ending': vm.like == true, 'black path-ending': vm.like == false}">
+                <input type="text"
+                  ng-model="vm.interest"
+                  name="interest"
+                  placeholder="Like.."
+                  maxlength="45"
+                  uib-typeahead="interest as interest.name for interest in vm.getInterests($viewValue)"
+                  typeahead-loading="loadingLocations"
+                  typeahead-no-results="noResults"
+                  typeahead-editable="false"
+                  class="form-control unzoomable-input"
+                  typeahead-template-url="interestTypeaheadSuggestions.html"
+                  typeahead-on-select="(vm.like !== false) && (vm.like = true)">
+                <span class="form-control-feedback">
+                  <button class="btn btn-us new-btn"
+                    ng-class="{'btn-primary path-end': vm.like == true,
+                               'btn-black path-end': vm.like == false}"
+                    ng-hide="vm.like == undefined"
+                    >
+                    {{vm.like ? 'Like' : 'Hate'}}
+                  </button>
+                </span>
+                <textarea class="form-control unzoomable-input interest-review" ng-model="vm.comment" placeholder="Enter reason why you like or hate it"></textarea>
+                <button type="submit"
+                  class="btn next-btn"
+                  ng-disabled="!vm.interest">Next</button>
+              </div>
+              <i ng-show="loadingLocations"
+                class="glyphicon glyphicon-refresh">
+                Loading.....
+              </i>
+              <div ng-show="noResults">
+                <i class="glyphicon glyphicon-remove"></i> No Results Found
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

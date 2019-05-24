@@ -1,0 +1,37 @@
+<%= form_for(@user_setting) do |f| %>
+  <% if @user_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_setting.errors.count, "error") %> prohibited this user_setting from being saved:</h2>
+
+      <ul>
+      <% @user_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :radius %><br>
+    <%= f.text_field :radius %>
+  </div>
+  <div class="field">
+    <%= f.label :common_interests_count %><br>
+    <%= f.number_field :common_interests_count %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :ages %><br>
+    <%= f.text_area :ages %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+batman_batmobile:
+  user: batman
+  interest: batmobile
+  like: true
+batman_catwoman:
+  user: batman
+  interest: cat_woman
+  like: false

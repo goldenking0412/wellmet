@@ -1,0 +1,30 @@
+{
+  "name": "wellmet",
+  "version": "0.0.0",
+  "authors": [
+    "Backnol Yogendran <backnol@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "Proprietary",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "AngularDevise": "angular-devise#~1.3.0",
+    "css-spinners": "~2.2.0",
+    "angularjs-autocomplete": "~0.4.8",
+    "ngGeolocation": "~0.0.8"
+  },
+  "dependencies": {
+    "fizzy-ui-utils": "^2.0.5",
+    "isotope": "^3.0.4"
+  }
+}

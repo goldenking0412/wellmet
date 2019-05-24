@@ -1,0 +1,15 @@
+batmobile:
+  category: automotive
+  name: Batmobile
+joker:
+  category: bad_guys
+  name: Joker
+cat_woman:
+  category: bad_guys
+  name: Cat Woman
+batcopter:
+  category: flight
+  name: Batcopter
+batsling:
+  category: utilities
+  name: Batsling

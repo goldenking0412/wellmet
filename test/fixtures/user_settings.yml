@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  radius: 9.99
+  common_interests_count: 1
+  gender: MyString
+  ages: MyText
+
+two:
+  user_id: 1
+  radius: 9.99
+  common_interests_count: 1
+  gender: MyString
+  ages: MyText

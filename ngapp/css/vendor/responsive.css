@@ -1,0 +1,50 @@
+.before-login img{width:100%;}
+.mobile-header .mobile-container{padding-left:10px;padding-right:10px;}
+.mobile-header .mobile-container .mobile-menu a{float:left;margin:15px 0;}
+.mobile-header .mobile-container .mobile-logo{padding:0;}
+@media only screen and (max-width:1024px){.mobile-header .mobile-container .mobile-profile{line-height:50px;}
+}
+@media only screen and (max-width:1024px){.mobile-header .mobile-container .mobile-profile .avatar-section-btn{float:right;outline:none;}
+.mobile-header .mobile-container .mobile-profile .avatar-section-btn:hover, .mobile-header .mobile-container .mobile-profile .avatar-section-btn:focus, .mobile-header .mobile-container .mobile-profile .avatar-section-btn:visited, .mobile-header .mobile-container .mobile-profile .avatar-section-btn:active{background-color:transparent;}
+}
+.mobile-header .mobile-container .mobile-profile .dropdown .avatar-section-btn{float:right;}
+.mobile-header .mobile-container .mobile-profile .dropdown .avatar-section-btn img{max-width:28px;height:auto;border-radius:50%;}
+.mobile-header .mobile-container .mobile-profile .dropdown .avatar-section-btn:hover, .mobile-header .mobile-container .mobile-profile .dropdown .avatar-section-btn:focus, .mobile-header .mobile-container .mobile-profile .dropdown .avatar-section-btn:visited, .mobile-header .mobile-container .mobile-profile .dropdown .avatar-section-btn:active{background-color:transparent;}
+.mobile-header .mobile-container .mobile-profile .dropdown .dropdown-menu{padding:0;border:1px solid #f4f4f4;border-bottom-right-radius:0;border-bottom-left-radius:0;min-width:135px;box-shadow:none;border-bottom:3px solid #0052cc;right:0;top:40px;}
+.mobile-header .mobile-container .mobile-profile .dropdown .dropdown-menu li{border-bottom:1px solid #f4f4f4;}
+.mobile-header .mobile-container .mobile-profile .dropdown .dropdown-menu li a{padding:6px 20px 2px 20px;min-height:30px;font-size:14px;color:#808080;font-family:"Roboto", sans-serif;font-weight:normal;}
+@media only screen and (max-width:1024px){body .navbar{height:120px;}
+}
+@media only screen and (max-width:767px){body .navbar .navbar-background .navbar-left{margin:0 auto;}
+}
+@media only screen and (max-width:767px){body .navbar .navbar-background .navbar-left li{float:left;padding:0;}
+}
+@media only screen and (max-width:420px){body .navbar .navbar-background .navbar-left li a{font-size:13px;padding-bottom:9px;display:block;width:100%;padding:0 0 9px 0;letter-spacing:1px;}
+body .navbar .navbar-background .navbar-left li a:hover, body .navbar .navbar-background .navbar-left li a:focus{padding:0 0 9px 0;}
+}
+@media only screen and (max-width:1024px){body .navbar .navbar-background .navbar-left li a img{padding-right:0;}
+}
+@media only screen and (max-width:420px){body .navbar .navbar-background .navbar-left li a img{max-width:24px;height:auto;}
+}
+@media only screen and (max-width:767px){body .navbar .navbar-background.desktop-header{padding:0;}
+}
+@media only screen and (max-width:1024px){body .navbar .navbar-background.desktop-header .custom-container{min-height:70px;padding-left:25px;}
+}
+@media only screen and (max-width:1024px){body .category-findout .timeline{margin:0 !important;}
+}
+@media only screen and (max-width:1024px){body .category-findout .find-category .item{width:100% !important;margin:0 auto !important;}
+}
+@media only screen and (max-width:1024px){body .category-findout .find-category .item .timeline-block-interests{width:50%;}
+}
+@media only screen and (max-width:767px){body .category-findout .find-category .item .timeline-block-interests{width:100%;}
+}
+@media only screen and (max-width:1024px){body .category-findout .find-category .item .timeline-block-interests .category-list .game-logo{bottom:100px;top:auto;}
+}
+@media only screen and (max-width:1024px){body .category-findout .find-category .item .timeline-block-interests .category-list .content-flow .content-icons{width:25%;}
+}
+@media only screen and (max-width:1024px){body .category-findout .find-category .item .timeline-block-interests .category-list .content-flow .content-icons.hover-icon{width:25%;opacity:1;}
+}
+.dropdown-menu .active a{background-color:#ffffff !important;}
+.dropdown-menu .active a:focus, .dropdown-menu .active a:hover{background-color:#ffffff !important;}
+@media (min-width:768px) and (max-width:991px){.welmet-tab{width:104% !important;margin-left:-12px !important;}
+}

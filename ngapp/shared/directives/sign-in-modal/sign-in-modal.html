@@ -1,0 +1,66 @@
+<div class="custom-modal">
+  <div class="modal-body">
+    <div class="row logo-section">
+      <img src="/images/newtheme/form-logo.png" class="img-responsive" alt="Wellmet Logo">
+    </div>
+    <div class="alert alert-stroke alert-red-500" ng-show="vm.loginFailed">
+      <strong>Failed!</strong> Invalid username/password
+    </div>
+    <div class="row">
+      <div ng-repeat="banner in logincms" class="col-xs-12 text-center">
+        <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.content)"></div>
+      </div>
+    </div>
+    <form ng-submit="vm.login()" class="home-signin">
+      <div class="row row-form">
+        <div class="col-xs-12">
+          <input class="form-control"
+            placeholder="Username"
+            ng-model="vm.user.username"
+            name="user[username]" type="text">
+            <span class="bar"></span>
+        </div>
+      </div>
+      <br>
+      <div class="row row-form">
+        <div class="col-xs-12">
+          <input class="form-control"
+            placeholder="Password"
+            ng-model="vm.user.password"
+            type="password"
+            name="user[password]">
+            <span class="bar"></span>
+        </div>
+      </div>
+      <br>
+      <div class="row btn-space">
+        <div class="col-xs-12 col-sm-12 col-md-6 btnset-left">
+          <a class="btn btn-default btn-block sign-up"
+            ui-sref="user-new"
+            ui-sref-opts="{reload: true}">
+            Sign Up
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 btnset-right">
+          <button class="btn btn-warning btn-block sign-in" type="submit">
+            Sign In
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 social-login fb-login btnset-left">
+          <a href="users/auth/facebook" class="btn btn-primary btn-block" target="_top"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 social-login google-login btnset-right">
+         <a href="users/auth/google_oauth2" class="btn btn-danger btn-block" target="_top"><i class="fa fa-google" aria-hidden="true"></i>  Google</a>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col-xs-12 text-center">
+          <a ui-sref="users-password-reset" class="password-reset">Reset Password</a>
+        </div>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>

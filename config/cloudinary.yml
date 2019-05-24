@@ -1,0 +1,18 @@
+development:
+  cloud_name: doivtosxj
+  api_key: '596717347568382'
+  api_secret: n6Wclcp0gOAvY1GCKGHxstF5pTo
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: doivtosxj
+  api_key: '596717347568382'
+  api_secret: n6Wclcp0gOAvY1GCKGHxstF5pTo
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: doivtosxj
+  api_key: '596717347568382'
+  api_secret: n6Wclcp0gOAvY1GCKGHxstF5pTo
+  enhance_image_tag: true
+  static_image_support: false

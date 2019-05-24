@@ -1,0 +1,156 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content" >
+  <!-- extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+    <div class="slider section">
+      <div class="static-banner before-banner before-login" ng-show="!Auth.isAuthenticated()" ng-repeat="banner in banner_mgmts | orderBy : 'position'" ng-if ="$index == 0 ">
+        <img src={{banner.image}}>
+        <div ng-class="banner.heading_position" class="position">
+          <div class="head" data-ng-bind-html="trustAsHtml(banner.heading)"></div>
+          <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.subtitle1)"></div>
+          <div class="sub-title" data-ng-bind-html="trustAsHtml(banner.subtitle2)"></div>
+        </div>
+      </div>
+      <div class="mobile-banner banner before-login" ng-show="!Auth.isAuthenticated()" ng-repeat="banner in banner_mgmts | orderBy : 'position'" ng-if ="$index == 0 ">
+        <img src={{banner.image}}>
+        <div ng-class="banner.heading_position" class="position">
+          <div class="head" data-ng-bind-html="trustAsHtml(banner.heading)"></div>
+          <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.subtitle1)"></div>
+          <div class="sub-title" data-ng-bind-html="trustAsHtml(banner.subtitle2)"></div>
+        </div>
+      </div>
+      <div class="container-fluid dynamic-banner before-login" ng-show="Auth.isAuthenticated()">
+        <ul rn-carousel rn-carousel-auto-slide rn-carousel-controls dots="true" class="image" style={{getHeight('bannerr')}}>
+          <li class="banner" id="bannerr" ng-repeat="banner in banner_mgmts | orderBy : 'position'"><img ng-src="{{banner.image}}">
+            <div ng-class="banner.heading_position" class="position">
+              <div class="head" data-ng-bind-html="trustAsHtml(banner.heading)"></div>
+              <div class="sup-title" data-ng-bind-html="trustAsHtml(banner.subtitle1)"></div>
+              <div class="sub-title" data-ng-bind-html="trustAsHtml(banner.subtitle2)"></div>
+            </div>
+          </li>
+        </ul>
+        <style type="text/css">
+          ul[rn-carousel] {
+            overflow-x: auto !important;
+          }
+        </style>
+      </div>
+      <div class="main-login-widget">
+        <div class="login-form home-page-login">
+	        <div ng-hide="Auth.isAuthenticated()" class="col-xs-12 item">
+	          <div class="timeline-block">
+	            <div class="panel panel-default share clearfix-xs">
+	              <div class="panel-body info-panel">
+	                <div class="item inner-form-control" ng-include="'shared/directives/sign-in-modal/sign-in-modal.html'"></div>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+      </div>
+    </div>
+<!--     <div class="container-fluid">
+      <ul rn-carousel rn-carousel-auto-slide rn-carousel-controls dots="true" class="image" style="min-height: 300px;">
+        <li style="width: 1349px"><img src="http://192.168.1.95:8066/system/banner_managements/images/000/000/013/original/Spring.jpg?1522162422" /></li>
+        <li style="width: 1349px"><img src="http://192.168.1.95:8066/system/banner_managements/images/000/000/004/original/HealthandWellness.jpg?1520624536"></li>
+        <li style="width: 1349px"><img src="http://192.168.1.95:8066/system/banner_managements/images/000/000/005/original/Media.jpg?1520615007"></li>
+      </ul>
+    </div> -->
+    <div class="container-fluid" style="">
+      <div class="top-search-section">
+        <div class="top-search-inner">
+          <img src="/images/newtheme/top10.png" alt="Top 10 Search" />
+          <form ng-submit="$state.go('home', {name_cont: $state.params.name_cont}, {reload: true, location: 'replace'})" class="search-width">
+            <div class="input-group">
+              <input type="text"
+                class="form-control"
+                ng-model="$state.params.name_cont"
+                placeholder="Search">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary search-btn"><img src="/images/newtheme/search.png" alt="Search" /></button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid top-10-interests">
+      <div class="container custom-container">
+        <ul class="interest-tab">
+          <li class="interest-tab-link left" ng-class="{'active': !$state.params.added_date_range}">
+            <a class="btn btn-default btn-block interest-tab-btn" ng-class="{'btn-primary': !$state.params.added_date_range}" ui-sref="{added_date_range: '', name_cont:''}" ui-sref-opts="{location:'replace'}">All Time</a>
+          </li>
+          <li class="interest-tab-link left" ng-class="{'active': $state.params.added_date_range == 'today'}">
+            <a class="btn btn-default btn-block interest-tab-btn" ng-class="{'btn-primary': $state.params.added_date_range == 'today'}" ui-sref="{added_date_range: 'today', name_cont:''}" ui-sref-opts="{location:'replace'}">Daily</a>
+          </li>
+          <li class="interest-tab-link middle">
+          </li>
+          <li class="interest-tab-link right" ng-class="{'active': $state.params.added_date_range == 'this_week'}">
+            <a class="btn btn-default btn-block interest-tab-btn" ng-class="{'btn-primary': $state.params.added_date_range == 'this_week'}" ui-sref="{added_date_range: 'this_week', name_cont:''}" ui-sref-opts="{location:'replace'}">Weekly</a>
+          </li>
+          <li class="interest-tab-link right" ng-class="{'active': $state.params.added_date_range == 'this_month'}">
+            <a class="btn btn-default btn-block interest-tab-btn" ng-class="{'btn-primary': $state.params.added_date_range == 'this_month'}" ui-sref="{added_date_range: 'this_month', name_cont:''}" ui-sref-opts="{location:'replace'}">Monthly</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="container custom-container custom-interests">
+        <div class="top-inner top-dropdown-inner" ng-show="Auth.isAuthenticated()">
+          <div uib-dropdown="" class="btn-group dropdown">
+            <button id="single-button"
+              type="button"
+              class="btn btn-default form-control text-left form-control-w-200 interest-btn dropdown-toggle"
+              uib-dropdown-toggle
+              ng-disabled="disabled" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+               {{(categories|filter:{id: $state.params.category_id_eq })[0].name }}<i class="fa fa-caret-down" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu="" role="menu" aria-labelledby="single-button">
+              <li role="menuitem"
+                ng-repeat="category in categories">
+                <a ui-sref="{category_id_eq: category.id}"
+                  ui-sref-opts="{location:'replace'}">
+                  {{category.name}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container category-findout">
+      <div class="timeline row">
+        <div class="find-category">
+          <div class="item"
+            >
+            <div ng-show="vm.name_content !=null" class="search-for">Search Results for "{{vm.name_content}}"</div>
+            <div ng-hide="vm.interests.length == 0" class="timeline-block timeline-block-interests" ng-repeat="interest in vm.interests"
+            ng-init="category = (categories|filter:{id: interest.category_id}:true)[0]">
+              <div class="panel panel-default category-list"
+                ng-click="Auth.isAuthenticated() ? $state.go('interest', {id: interest.id}) : $state.go('home')">
+                <div class="panel-heading panel-heading-primary title" ng-init='rand = generateNumber()'>
+                  <img src="/images/categories/bgcategory_random/{{category.image}}_{{rand}}.png" class="game" alt={{category.name}} />
+                  <a class="game-logo"><img src="/images/categories/logos/{{category.image.replace('-sm.png')}}" alt={{category.name}} /></a>
+                </div>
+                <div class="panel-body text-black background-white content-flow">
+                  <h4 class="text-center game-title">{{interest.name}}</h4>
+                  <div class="text-center total-interest-users">
+                    <p class="content-icons"><img src="/images/newtheme/view.png"  class="view text-center" alt="view" /><span>{{interest.all_time_users_count|thousandSuffix}}</span></p>
+                    <p class="content-icons"><img src="/images/newtheme/like.png"  class="like text-center" alt="like" /><span>{{interest.like_count|thousandSuffix}}</span></p>
+                    <p class="content-icons"><img src="/images/newtheme/unlike.png"  class="unlike text-center" alt="unlike" /><span>{{interest.dislike_count|thousandSuffix}}</span></p>
+                    <p class="content-icons"><img src="/images/newtheme/message.png"  class="message text-center" alt="message" /><span>{{interest.comments_count|thousandSuffix}}</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="no-search" ng-show="vm.interests.length == 0">
+              <span><img class="search-icon" src="/images/newtheme/no-result.png" alt="No Result" /> No Results found</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- /st-content-inner -->
+</div>
+<!-- /st-content -->

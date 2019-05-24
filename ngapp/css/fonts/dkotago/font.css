@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'dkotago';
+	src: url('fonts/dk-otago.eot');
+	src: local('☺'), url('fonts/dk-otago.woff') format('woff'), url('fonts/dk-otago.ttf') format('truetype'), url('fonts/dk-otago.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

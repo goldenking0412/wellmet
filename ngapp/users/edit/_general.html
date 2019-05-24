@@ -1,0 +1,64 @@
+<div class="panel panel-default personal-information general-settings">
+  <form class="form-horizontal">
+    <div class="panel-body">
+      <div class="alert alert-danger alert-dismissible"
+        ng-repeat="error in vm.errors track by $index">
+        <button type="button"
+          class="close"
+          ng-click="vm.errors.splice($index, 1)">
+          &times;
+        </button>
+        {{error}}
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 left-tab">
+          <div class="form-group-label label-fix">
+            <input type="text" class="input-text" required ng-model="vm.user.username" autocapitalize="off" autocorrect="off" disabled/>
+            <span for="username" class="floating-label">User Name</span>
+          </div>
+          <p class="form-note">Username must be 3 - 10 characters</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 left-tab">
+          <div class="form-group-label label-fix">
+           <input type="text" class="input-text date-icon" required ng-model="vm.user.date_of_birth.substring(0,10)" autocapitalize="off" autocorrect="off" disabled/>
+            <span for="birthMonth" class="floating-label">Date of Birth</span>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 right-tab">
+          <div class="form-group-label label-fix">
+            <select  class="input-text" ng-model="vm.user.gender" name="gender" disabled/>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="both">Both</option>
+            </select>
+            <span for="Gender" class="floating-label">Gender</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 left-tab">
+          <div class="form-group-label">
+            <input name="email" class="input-text" required ng-model="vm.user.email">
+            <span for="email" class="floating-label">Email address</span>
+          </div>
+          <p class="form-note" style="width: 480px;">Email address is needed to recover your password</p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 right-tab">
+          <div class="form-group-label">
+            <input name="location" ng-autocomplete class="input-text" required ng-model="vm.user.location" placeholder="">
+            <span for="location" class="floating-label">Current City</span>
+            <span class="current_location"><a ng-click="vm.update_current_location(vm)"><img src="/images/newtheme/locate_filled_hover.png"><span class="tooltiptext">current location</span></a></span>
+          </div>
+        </div>
+      </div>
+      <div class="row general-btn">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 locate-save">
+         <button class="btn btn-primary btn-block" ng-click="vm.updateUser(vm)">Save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

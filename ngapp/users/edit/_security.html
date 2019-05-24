@@ -1,0 +1,48 @@
+<div class="panel panel-default security">
+  <form class="form-horizontal">
+    <div class="panel-body">
+      <div class="alert alert-danger alert-dismissible"
+        ng-repeat="error in vm.errors track by $index">
+        <button type="button"
+          class="close"
+          ng-click="vm.errors.splice($index, 1)">
+          &times;
+        </button>
+        {{error}}
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-7 col-xs-12 col-sm-12 left-tab">
+          <div class="form-group-label">
+            <input name="current_password" class="input-text" required ng-model="vm.user.current_password" type="password">
+            <span for="currentpassword" class="floating-label">Current Password</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-7 col-xs-12 col-sm-12 left-tab">
+          <div class="form-group-label">
+              <input name="password" class="input-text" required ng-model="vm.user.password" type="password">
+              <span for="password" class="floating-label">New Password</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-7 col-xs-12 col-sm-12 left-tab">
+          <div class="form-group-label">
+              <input class="input-text" ng-model="vm.user.password_confirmation" required name="paswordConfirmation" type="password">
+              <span for="passwordConfirmation"" class="floating-label">Confirm New Password</span>
+          </div>
+        </div>
+      </div>
+      <div class="row general-btn">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 locate-save" ng-hide="vm.user.provider">
+          <button class="btn btn-primary btn-block"
+          ng-click="vm.updateUser(vm)"
+          ng-disabled="!vm.user.password || !vm.user.password_confirmation || !vm.user.current_password || vm.user.provider">
+          Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

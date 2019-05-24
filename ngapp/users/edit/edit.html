@@ -1,0 +1,130 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content">
+  <!-- extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+    <div class="profile-section">
+      <div class="container profile-container setting-page">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-3 profile-sidebar">
+            <div class="cover profile" ng-include="'shared/templates/user-sub-menu.html'"></div>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-9 profile-rightsection">
+            <div class="panel-heading panel-heading-gray title hidden-xs hidden-sm">Settings</div>
+            <div class="hidden-lg hidden-md responsive-setting-menu">
+              <div class="setting-menu-list">
+                <div class="panel-heading panel-heading-gray title toggle-heading">{{vm.heading[$state.params.current_step]}}</div>
+                <div class="menu-toggle">
+                  <img src="/images/newtheme/setting-menu.png" ng-click="vm.togglecollapse()" alt="Settings">
+                </div>
+              </div>
+              <div uib-collapse="isCollapsed" class="collapse">
+                <div class="panel panel-default panel-categories settings">
+                  <div class="panel-body settings-side-panel">
+                    <p ng-click="$state.go('user-edit', {current_step: 0}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 0}">
+                    <span ng-class="{active: $state.params.current_step == 0}">General</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 1}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 1}">
+                    <span ng-class="{active: $state.params.current_step == 1}">Security</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 2}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 2}"> 
+                    <span ng-class="{active: $state.params.current_step == 2}">Privacy</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 3}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 3}">
+                    <span ng-class="{active: $state.params.current_step == 3}">Block List</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 4}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 4}">
+                    <span ng-class="{active: $state.params.current_step == 4}">Notifications</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 5}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 5}">
+                    <span ng-class="{active: $state.params.current_step == 5}">Support</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 6}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 6}">
+                    <span ng-class="{active: $state.params.current_step == 6}">Find settings</span>
+                    </p>
+                    <p ng-click="$state.go('user-edit', {current_step: 7}, {reload: true})" class="pointer-click" ng-class="{active: $state.params.current_step == 7}">
+                    <span ng-class="{active: $state.params.current_step == 7}">Delete Account</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row hidden-xs hidden-sm">
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="timeline-block">
+                  <div class="panel panel-default panel-categories settings">
+                    <div class="panel-body settings-side-panel">
+                      <p ng-click="$state.go('user-edit', {current_step: 0}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 0}">
+                        <span ng-class="{active: $state.params.current_step == 0}">General</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 1}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 1}">
+                        <span ng-class="{active: $state.params.current_step == 1}">Security</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 2}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 2}">
+                        <span ng-class="{active: $state.params.current_step == 2}">Privacy</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 3}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 3}">
+                        <span ng-class="{active: $state.params.current_step == 3}">Block List</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 4}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 4}">
+                        <span ng-class="{active: $state.params.current_step == 4}">Notifications</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 5}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 5}">
+                        <span ng-class="{active: $state.params.current_step == 5}">Support</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 6}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 6}">
+                        <span ng-class="{active: $state.params.current_step == 6}">Find settings</span>
+                      </p>
+                      <p ng-click="$state.go('user-edit', {current_step: 7}, {reload: true})"
+                        class="pointer-click"
+                        ng-class="{active: $state.params.current_step == 7}">
+                        <span ng-class="{active: $state.params.current_step == 7}">Delete Account</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row  view-menu">
+              <div class="col-xs-12 col-md-12 col-lg-12">
+                <div class="timeline-block" ng-show="$state.params.current_step == 0" ng-include="'users/edit/_general.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 1" ng-include="'users/edit/_security.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 2" ng-include="'users/edit/_privacy.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 3" ng-include="'users/edit/_block_list.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 4" ng-include="'users/edit/_notifications.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 5" ng-include="'users/edit/_support.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 6" ng-include="'users/edit/_locate_settings.html'">
+                </div>
+                <div class="timeline-block" ng-show="$state.params.current_step == 7" ng-include="'users/edit/_delete_account.html'">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /st-content-inner -->
+
+</div>
+<!-- /st-content -->

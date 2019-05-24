@@ -1,0 +1,6 @@
+Style/MultilineOperationIndentation:
+  EnforcedStyle: aligned
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 130

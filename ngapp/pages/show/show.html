@@ -1,0 +1,27 @@
+<!-- this is the wrapper for the content -->
+<div class="container cms-help">
+	<div class="st-content">
+
+	  <!-- extra div for emulating position:fixed of the menu -->
+	  <div class="st-content-inner custom-cms-page">
+		<div class="panel panel-default panel-bgcolor ng-scope">
+			<div class="panel-heading panel-heading-primary logo">
+				<a class="page-logo" href="/">
+					<img src="/images/wellmetlogo.png" class="well-logo">
+				</a>
+			</div>
+			<div class="panel-heading panel-heading-primary title">
+				<h3 class="page-tile"><span ng-bind-html="vm.page.title"></span></h3>
+				<a href="/" class="btn btn-primary cms-back-btn">Back</a>
+			</div>
+			<div class="panel-body">
+				<div ng-bind-html="vm.page.body"></div>
+			</div>
+		</div>
+	  </div>
+	  <!-- /st-content-inner -->
+
+	</div>
+</div>
+
+<!-- /st-content -->

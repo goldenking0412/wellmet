@@ -1,0 +1,535 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content">
+
+  <!-- extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+
+
+    <div class="container chatting">
+      <div class="row chat-page desktop-view">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner-chat panel">
+          <div class="col-sm-12 col-sm-4 col userlist-left">
+            <div class="panel">
+              <div class="header-top">
+                <div class="avatar" style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                  <div class="avatar-inner">
+                    <img ng-show="!vm.user.profilephoto" ng-src="/images/user/small/{{(categories|filter:{id: vm.user.top_category_id}:true)[0].image || 'none.png'}}" class="img-circle" alt="profile_image" width="110"  ><img ng-show="vm.user.profilephoto"  class="img-circle" ng-src="{{vm.user.profilephoto}}" width="110" alt="profile_image">
+                  </div>
+                </div>
+                <div class="main-title">{{vm.user.username}}</div>
+              </div>
+              <div class="text-center chat-nav">
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'all', 'btn-gray-text':$state.params.tab != 'all'}"
+                  ui-sref="messages({tab: 'all'})"
+                  ui-sref-opts="{reload: true}">
+                  All
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'online', 'btn-gray-text':$state.params.tab != 'online'}"
+                  ui-sref="messages({tab: 'online', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Online
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'offline', 'btn-gray-text':$state.params.tab != 'offline'}"
+                  ui-sref="messages({tab: 'offline', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Offline
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'hails', 'btn-gray-text':$state.params.tab != 'hails'}"
+                  ui-sref="messages({tab: 'hails', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Hails
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'edit', 'btn-gray-text':$state.params.tab != 'edit'}"
+                  ui-sref="messages({tab: 'edit', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Edit
+                </a>
+              </div>
+              <ul class="list-group chat-users-list">
+                <li class="list-group-item"
+                  ng-repeat="user in vm.users"
+                  ng-class="{active: user.id == $state.params.to_user_id_eq, 'pointer-click': $state.params.tab != 'edit'}"
+                  ng-click="$state.params.tab != 'edit' && $state.go('messages', {to_user_id_eq: user.id}, {reload: true, replace: true})">
+                  <div class="media">
+                    <span ng-show="vm.unreadMessageCount(user.messages) > 0" class="msg-note">{{vm.unreadMessageCount(user.messages)}}</span>
+                    <div class="media-left user-avator">
+                      <a ui-sref="user({id: user.id})">
+                        <img ng-show="!user.profilephoto" class="media-object img-circle"
+                          src="/images/newtheme/users.png" alt="profile_image"
+                          width="50" style="border: 3px solid {{user.top_category_id|profileImageColor}}">
+                        <img ng-show="user.profilephoto" class="media-object img-circle"
+                          ng-src="{{user.profilephoto}}" alt="profile_image"
+                          width="50" style="border: 3px solid {{user.top_category_id|profileImageColor}}">
+                      </a>
+                    </div>
+                    <div class="media-body user-name">
+                      <span>
+                        <h4>
+                          {{user.username}}
+                          <div class="online-circle pull-right"
+                            ng-show="user.online && $state.params.tab != 'edit'">
+                          </div>
+                        </h4>
+                        <p class="display-date" ng-class="{'unread_msg': vm.lastMessage(user).read == false}">{{vm.lastMessage(user).text | limitTo: 15 }}{{vm.lastMessage(user).text.length > 15 ? '&hellip;' : ''}}</p>
+                      </span>
+                    </div>
+                    <i ng-show="$state.params.tab == 'edit'"
+                    class="fa fa-trash-o pull-right"
+                    ng-click="vm.userToDelete = user; vm.openDeleteMessagesModal()">
+                    </i>
+                    <div ng-if="user.online" class="online-hour">
+                      <div class="online-image">
+                        <img class="img-responsive" src="/images/newtheme/online-user.png" alt="online-user" />
+                        <p><span>{{vm.onlineHours(user).h}} h</span>&nbsp;<span>{{vm.onlineHours(user).m}} m</span></p>
+                      </div>
+                    </div>
+                    <div ng-if="!user.online" class="online-hour">
+                      <div class="online-image">
+                        <img class="img-responsive" src="/images/newtheme/offline-user.png" alt="offline-user" />
+                        <p><span>{{vm.offlineHours(user) | date: "hh:mm a"}}</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-sm-8 user-chatlist-right">
+            <div class="col-sm-12 sub-chat-div" ng-if="$state.params.tab != 'hails'">
+              <div class="timeline-block col-sm-12" ng-if="vm.toUser">
+                <div class="panel panel-default full-container chat-header">
+                  <div class="panel-heading panel-heading-primary title">
+                    <div class="media">
+                      <div class="media-left"></div>
+                      <div class="media-body main-user-header" ng-click="$state.go('user', {id: vm.toUser.id})">
+                        <a>{{vm.toUser.username}}</a>
+                         <!-- <span ng-if="vm.toUser.online"><img class="img-responsive" src="/images/newtheme/online-user.png" /></span> -->
+                       </div>
+                      <!-- <div class="media-right" ng-click="vm.openShareInterestsModal()">
+                        <h4>Share</h4>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="panel-body chat-box">
+                    <div class="col-xs-12 chat-message"
+                      ng-repeat="message in vm.messages">
+                      <!-- <div ng-if="Date().getHours() < 24" ng-init = "dispDate = vm.loadDate()">{{dispDate}}</div> -->
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="text-center" ng-class="{'date': date_to_display}" ng-init="date_to_display=vm.dateDisplay(message.updated_at, vm.messages.length)">
+                              {{ date_to_display | date: "dd MMM yyyy" }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="media-left" ng-show="message.user_id != vm.user.id">
+                        <img ng-show="!vm.toUser.profilephoto"  class="media-object img-circle chat-profile-icon" ng-src="{{vm.toUser.top_category_id|profileImage}}" 
+                        alt="profile_image" style="border-color: {{vm.toUser.top_category_id|profileImageColor}}">
+                        <img ng-show="vm.toUser.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{vm.toUser.profilephoto}}" 
+                        alt="profile_image" style="border-color: {{vm.toUser.top_category_id|profileImageColor}}">
+                        <p class="previous-chat-time">{{message.updated_at | date : "hh:mm a" }}</p>
+                      </div>
+                      <div class="media-right" ng-show="message.user_id == vm.user.id">
+                        <img ng-show="!vm.user.profilephoto" class="media-object img-circle chat-profile-icon"
+                        ng-src="{{vm.user.top_category_id|profileImage}}"
+                        alt="profile_image"
+                        style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                        <img ng-show="vm.user.profilephoto" class="media-object img-circle chat-profile-icon"
+                        ng-src="{{vm.user.profilephoto}}"
+                        alt="profile_image"
+                        style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                        <p class="current-chat-time">{{message.updated_at | date : "hh:mm a" }}</p>
+                      </div>
+                      <div class="media-body chats-info" ng-class="{'pull-to-right': message.user_id == vm.user.id}">
+                        <p class="chat-bubble"
+                          ng-class="{'pull-right': message.user_id == vm.user.id}">
+                          {{message.text}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-body send-messager">
+                    <div class="col-xs-12">
+                      <form ng-submit="vm.sendMessage()">
+                        <div class="form-group message-sender">
+                          <!-- <input class="form-control"
+                            ng-model="vm.messageText"
+                            ng-disabled="vm.sendingMessage"
+                            placeholder="Write Message..."> -->
+
+                         <textarea  class="form-control"
+                            ng-model="vm.messageText"
+                            ng-disabled="vm.sendingMessage"
+                            placeholder="Write Message..." row="2" col="4"></textarea>
+                            <button class="pull-right img-send" ng-disabled="vm.sendingMessage || !vm.messageText"><img class="img-responsive" src="/images/newtheme/chat-sender.png" alt="chat-sender" /></button>
+                        <!-- <button class="btn btn-primary pull-right" ng-disabled="vm.sendingMessage || !vm.messageText">Send</button> -->
+                        </div>
+                      </form>
+                      <div class="share-block">
+                        <ul>
+                          <li><img class="img-responsive pointer-click" class="" ng-click="vm.openBlockUserModal()" src="/images/newtheme/block-user.png" alt="block-user" /></li>
+                          <li><img ng-click="vm.openShareInterestsModal()" class="img-responsive pointer-click" class="" src="/images/newtheme/share-user.png" alt="share-user" /></li>
+                        </ul>
+                      </div>
+                      <!-- <div class="pointer-click"
+                        ng-click="vm.openBlockUserModal()">
+                        <i class="fa fa-ban"></i> Block User
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 sub-chat-div hail-section" ng-if="$state.params.tab == 'hails'">
+              <div class="timeline-block" ng-if="vm.toUser">
+                <div class="panel panel-default full-container chat-header">
+                  <div class="panel-heading panel-heading-primary title">
+                    <div class="media">
+                      <div class="media-left"></div>
+                      <div class="media-body main-user-header" ng-click="$state.go('user', {id: vm.toUser.id})">
+                        <a>{{vm.toUser.username}}</a>
+                        <!-- <span><img class="img-responsive" src="/images/newtheme/online-user.png" /></span> -->
+                      </div>
+                        <div class="hail-action general-btn">
+                          <button type="button"
+                            class="btn btn-primary accept-btn hail-action-button"
+                            ng-click="vm.hailAction(true)"
+                            ng-disabled="vm.updatingHail">
+                            Accept
+                          </button>
+                          <button type="button"
+                            class="btn btn-gray hail-action-button"
+                            ng-click="vm.hailAction(false)"
+                            ng-disabled="vm.updatingHail">
+                            Decline
+                          </button>
+                          <button type="button"
+                            class="btn btn-gray hail-action-button"
+                            ng-click="$state.go('user', {id: vm.toUser.id})"
+                            ng-disabled="vm.updatingHail">
+                            View Profile
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                    <!-- <div class="media-left">
+                      <a ui-sref="user({id: vm.toUser.id})">
+                        <img class="media-object img-circle chat-profile-icon"
+                          ng-src="{{vm.toUser.top_category_id|profileImage}}">
+                      </a>
+                    </div> -->
+                    <div class="media-body hail-message">
+                      <p class="chat-bubble pull-left">
+                        {{vm.hail.message}}
+                      </p>
+                    </div>
+                    <!-- <div class="row interest-list">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-xs-12 col-sm-6 col-md-3 item ng-scope" ng-repeat="interest in vm.interests" ng-show="vm.toUser" ng-init="category = (categories|filter:{id: interest.category_id}:true)[0]">
+                          <div class="timeline-block">
+                            <div class="interest-container">
+                              <div class="interest-thumbnail">
+                              <img src="/images/categories/bgcategory/6media.png" class="img-responsive thumbnail-bg" alt="Media">
+                              <span class="label label-default col-xs-12 interest-label"
+                              ng-style="{'background-color': interest.like || interest.like == null ? category.color : 'black'}">
+                              {{interest.name}}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3 item" ng-repeat="interest in vm.interests" ng-show="vm.toUser" ng-init="category = (categories|filter:{id: interest.category_id}:true)[0]">
+              <div class="timeline-block">
+                <div class="interest-container">
+                  <div class="interest-thumbnail">
+                    <img src="/images/categories/bgcategory/{{category.image}}" class="img-responsive thumbnail-bg" alt={{category.name}} />
+                    <a href="javascript:void(0);"
+                    ng-click="vm.isOpen(userInterest) && $state.go('interest', {id: interest.id})" class="thumbnail-icon">
+                      <img class="img-responsive" src="/images/categories/logos/{{category.image.replace('-sm.png')}}" alt="{{category.name}}" />
+                    </a>
+                  </div>
+                </div>
+                <div class="interest-heading">
+                  <div class="interest-name interest-label">
+                    <h5>{{interest.name}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row chat-page mobile-view">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner-chat panel">
+          <div class="col-xs-12 userlist-left">
+            <div class="panel timeline-block flip-container">
+              <div class="header-top">
+                <div class="avatar">
+                  <div class="avatar-inner">
+                    <img ng-show="!vm.user.profilephoto" ng-src="/images/user/small/{{(categories|filter:{id: vm.user.top_category_id}:true)[0].image || 'none.png'}}" class="img-circle" alt="profile_image" width="110" style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                    <img ng-show="vm.user.profilephoto"  class="img-circle" ng-src="{{vm.user.profilephoto}}" alt="profile_image"
+                    width="110" style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                  </div>
+                </div>
+                <div class="main-title">{{vm.user.username}}</div>
+              </div>
+              <div class="text-center chat-nav">
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'all', 'btn-gray-text':$state.params.tab != 'all'}"
+                  ui-sref="messages({tab: 'all'})"
+                  ui-sref-opts="{reload: true}">
+                  All
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'online', 'btn-gray-text':$state.params.tab != 'online'}"
+                  ui-sref="messages({tab: 'online', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Online
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'offline', 'btn-gray-text':$state.params.tab != 'offline'}"
+                  ui-sref="messages({tab: 'offline', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Offline
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'hails', 'btn-gray-text':$state.params.tab != 'hails'}"
+                  ui-sref="messages({tab: 'hails', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Hails
+                </a>
+                <a class="btn chat-head"
+                  ng-class="{'btn-primary': $state.params.tab == 'edit', 'btn-gray-text':$state.params.tab != 'edit'}"
+                  ui-sref="messages({tab: 'edit', to_user_id_eq: null})"
+                  ui-sref-opts="{reload: true}">
+                  Edit
+                </a>
+              </div>
+              <div class="flip">
+                <ul class="list-group chat-users-list front-chat">
+                  <li class="list-group-item"
+                    ng-repeat="user in vm.users"
+                    ng-class="{active: user.id == $state.params.to_user_id_eq, 'pointer-click': $state.params.tab != 'edit'}"
+                    ng-click="$state.params.tab != 'edit' && $state.go($state.current, {to_user_id_eq: user.id}, {reload: false, replace: true})">
+                    <div class="media">
+                      <span ng-show="vm.unreadMessageCount(user.messages) > 0">{{vm.unreadMessageCount(user.messages)}}</span>
+                      <div class="media-left user-avator">
+                        <a ui-sref="user({id: user.id})">
+                          <img ng-show="!user.profilephoto" class="media-object img-circle" src="/images/newtheme/users.png" alt="profile_image" width="50" style="border-color: {{user.top_category_id|profileImageColor}}">
+                          <img ng-show="user.profilephoto" class="media-object img-circle"
+                            ng-src="{{user.profilephoto}}"
+                            alt="profile_image"
+                            width="50" style="border-color: {{user.top_category_id|profileImageColor}}">
+                        </a>
+                      </div>
+                      <div class="media-body user-name">
+                        <span>
+                          <h4>
+                            {{user.username}}
+                            <div class="online-circle pull-right"
+                              ng-show="user.online && $state.params.tab != 'edit'">
+                            </div>
+                          </h4>
+                          <p class="display-date" ng-class="{'unread_msg': vm.lastMessage(user).read == false}">{{vm.lastMessage(user).text | limitTo: 15 }}{{vm.lastMessage(user).text.length > 15 ? '&hellip;' : ''}}</p>
+                        </span>
+                      </div>
+                      <i ng-show="$state.params.tab == 'edit'"
+                      class="fa fa-trash-o pull-right"
+                      ng-click="vm.userToDelete = user; vm.openDeleteMessagesModal()">
+                      </i>
+                      <div ng-if="user.online" class="online-hour">
+                        <div class="online-image">
+                          <img class="img-responsive" src="/images/newtheme/online-user.png" alt="online-user" />
+                          <p><span>{{vm.onlineHours(user).h}} h</span>&nbsp;<span>{{vm.onlineHours(user).m}} m</span></p>
+                        </div>
+                      </div>
+                      <div ng-if="!user.online" class="online-hour">
+                        <div class="online-image">
+                          <img class="img-responsive" src="/images/newtheme/offline-user.png" alt="offline-user" />
+                          <p><span>{{vm.offlineHours(user) | date: "hh:mm a"}}</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+                <div class="col-xs-12 user-chatlist-right front-chat back-chat">
+                  <div class="sub-chat-div" ng-if="$state.params.tab != 'hails'">
+                    <div class="timeline-block col-sm-12" ng-if="vm.toUser">
+                      <div class="panel panel-default full-container chat-header">
+                        <div class="panel-heading panel-heading-primary title">
+                          <div class="media">
+                            <div class="media-left"></div>
+                            <div class="media-body main-user-header" ng-click="$state.go('user', {id: vm.toUser.id})">
+                              <a>{{vm.toUser.username}}</a>
+                               <!-- <span ng-if="vm.toUser.online"><img class="img-responsive" src="/images/newtheme/online-user.png" /></span> -->
+                             </div>
+                            <!-- <div class="media-right" ng-click="vm.openShareInterestsModal()">
+                              <h4>Share</h4>
+                            </div> -->
+                          </div>
+                        </div>
+                        <div class="panel-body chat-box">
+                          <div class="col-xs-12 chat-message"
+                            ng-repeat="message in vm.messages">
+                            <!-- <div ng-if="Date().getHours() < 24" ng-init = "dispDate = vm.loadDate()">{{dispDate}}</div> -->
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="text-center" ng-class="{'date': date_to_display}" ng-init="date_to_display=vm.dateDisplay(message.updated_at, vm.messages.length)">
+                                    {{ date_to_display | date: "dd MMM yyyy" }}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="media-left" ng-show="message.user_id != vm.user.id">
+                              <img ng-show="!vm.toUser.profilephoto"  class="media-object img-circle chat-profile-icon" ng-src="{{vm.toUser.top_category_id|profileImage}}"
+                              alt="profileimage" style="border-color: {{vm.toUser.top_category_id|profileImageColor}}">
+                              <img ng-show="vm.toUser.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{vm.toUser.profilephoto}}" alt="profileimage"
+                              style="border-color: {{vm.toUser.top_category_id|profileImageColor}}">
+                              <p class="previous-chat-time">{{message.updated_at | date : "hh:mm a" }}</p>
+                            </div>
+                            <div class="media-right" ng-show="message.user_id == vm.user.id">
+                              <img ng-show="!vm.user.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{vm.user.top_category_id|profileImage}}" alt="profileimage" style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                              <img ng-show="vm.user.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{vm.user.profilephoto}}" alt="profileimage"
+                              style="border-color: {{vm.user.top_category_id|profileImageColor}}">
+                              <p class="current-chat-time">{{message.updated_at | date : "hh:mm a" }}</p>
+                            </div>
+                            <div class="media-body chats-info" ng-class="{'pull-to-right': message.user_id == vm.user.id}">
+                              <p class="chat-bubble"
+                                ng-class="{'pull-right': message.user_id == vm.user.id}">
+                                {{message.text}}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel-body send-messager">
+                          <div class="col-xs-12">
+                            <form ng-submit="vm.sendMessage()">
+                              <div class="form-group message-sender">
+                                <!-- <input class="form-control"
+                                  ng-model="vm.messageText"
+                                  ng-disabled="vm.sendingMessage"
+                                  placeholder="Write Message..."> -->
+
+                               <textarea  class="form-control"
+                                  ng-model="vm.messageText"
+                                  ng-disabled="vm.sendingMessage"
+                                  placeholder="Write Message..." row="2" col="4"></textarea>
+                                  <button class="pull-right img-send" ng-disabled="vm.sendingMessage || !vm.messageText"><img class="img-responsive" src="/images/newtheme/chat-sender.png" alt="chat-sender" /></button>
+                              <!-- <button class="btn btn-primary pull-right" ng-disabled="vm.sendingMessage || !vm.messageText">Send</button> -->
+                              </div>
+                            </form>
+                            <div class="share-block">
+                              <ul>
+                                <li><img class="img-responsive pointer-click" class="" ng-click="vm.openBlockUserModal()" src="/images/newtheme/block-user.png" alt="block-user" /></li>
+                                <li><img ng-click="vm.openShareInterestsModal()" class="img-responsive pointer-click" class="" src="/images/newtheme/share-user.png" alt="share-user" /></li>
+                              </ul>
+                            </div>
+                            <!-- <div class="pointer-click"
+                              ng-click="vm.openBlockUserModal()">
+                              <i class="fa fa-ban"></i> Block User
+                            </div> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 sub-chat-div hail-section" ng-if="$state.params.tab == 'hails'">
+                    <div class="timeline-block" ng-if="vm.toUser">
+                      <div class="panel panel-default full-container chat-header">
+                        <div class="panel-heading panel-heading-primary title">
+                          <div class="media">
+                            <div class="media-left"></div>
+                            <div class="media-body main-user-header" ng-click="$state.go('user', {id: vm.toUser.id})">
+                              <a>{{vm.toUser.username}}</a>
+                              <!-- <span><img class="img-responsive" src="/images/newtheme/online-user.png" /></span> -->
+                            </div>
+                              <div class="hail-action general-btn">
+                                <button type="button"
+                                  class="btn btn-primary accept-btn hail-action-button"
+                                  ng-click="vm.hailAction(true)"
+                                  ng-disabled="vm.updatingHail">
+                                  Accept
+                                </button>
+                                <button type="button"
+                                  class="btn btn-gray hail-action-button"
+                                  ng-click="vm.hailAction(false)"
+                                  ng-disabled="vm.updatingHail">
+                                  Decline
+                                </button>
+                                <button type="button"
+                                  class="btn btn-gray hail-action-button"
+                                  ng-click="$state.go('user', {id: vm.toUser.id})"
+                                  ng-disabled="vm.updatingHail">
+                                  View Profile
+                                </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel-body">
+                          <!-- <div class="media-left">
+                            <a ui-sref="user({id: vm.toUser.id})">
+                              <img class="media-object img-circle chat-profile-icon"
+                                ng-src="{{vm.toUser.top_category_id|profileImage}}">
+                            </a>
+                          </div> -->
+                          <div class="media-body hail-message">
+                            <p class="chat-bubble pull-left">
+                              {{vm.hail.message}}
+                            </p>
+                          </div>
+                          <!-- <div class="row interest-list">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <div class="col-xs-12 col-sm-6 col-md-3 item ng-scope" ng-repeat="interest in vm.interests" ng-show="vm.toUser" ng-init="category = (categories|filter:{id: interest.category_id}:true)[0]">
+                                <div class="timeline-block">
+                                  <div class="interest-container">
+                                    <div class="interest-thumbnail">
+                                    <img src="/images/categories/bgcategory/6media.png" class="img-responsive thumbnail-bg" alt="Media">
+                                    <span class="label label-default col-xs-12 interest-label"
+                                    ng-style="{'background-color': interest.like || interest.like == null ? category.color : 'black'}">
+                                    {{interest.name}}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12 item" ng-repeat="interest in vm.interests" ng-show="vm.toUser" ng-init="category = (categories|filter:{id: interest.category_id}:true)[0]">
+                    <div class="timeline-block">
+                      <div class="interest-container">
+                        <div class="interest-thumbnail">
+                          <img src="/images/categories/bgcategory/{{category.image}}" class="img-responsive thumbnail-bg" alt={{category.name}} />
+                          <a href="javascript:void(0);"
+                          ng-click="vm.isOpen(userInterest) && $state.go('interest', {id: interest.id})" class="thumbnail-icon">
+                            <img class="img-responsive" src="/images/categories/logos/{{category.image.replace('-sm.png')}}" alt="{{category.name}}" />
+                          </a>
+                        </div>
+                      </div>
+                      <div class="interest-heading">
+                        <div class="interest-name interest-label">
+                          <h5>{{ interest.name | limitTo: 37 }}{{ interest.name.length > 37 ? '&hellip;' : ''}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

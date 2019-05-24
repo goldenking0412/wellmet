@@ -1,0 +1,38 @@
+  <div class="block block-customer-login login-mainpage col-lg-5 col-md-5 col-xs-10 col-sm-6">
+  <div class="login-page">
+    <div class="row">
+    <span class="block-title">
+	      <%=image_tag("wellmetlogo.png")%>
+    </span>
+	</div>
+  <h2 class="login-header">Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field email required">
+    <%=image_tag("user.png")%>  
+    <!--- <%= f.label :email %><br />--->
+    <%= f.text_field :username, autofocus: true , placeholder: 'UserName' %>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+  </div>
+
+  <div class="field password required">
+    <%=image_tag("password.png")%>  
+    <!--- <%= f.label :password %><br />--->
+    <%= f.password_field :password, autocomplete: "off" , placeholder: 'Password' %>
+    <span class="highlight"></span>
+    <span class="bar"></span>
+  </div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end -%>
+
+  <div class="actions login-btn">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+</div>

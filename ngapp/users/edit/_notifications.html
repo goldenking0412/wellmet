@@ -1,0 +1,27 @@
+<div class="panel panel-default share clearfix-xs notification">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-12 notify-panel">
+        <ul class="list-group chat-users-list col-lg-7 col-xs-12 col-sm-12 col-md-7">
+          <li class="list-group-item no-side-borders" ng-repeat="(sKey, sValue) in vm.notificationSettings">
+            <div class="media">
+              <div class="media-body">
+                <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
+                  <h4>{{sValue}}</h4>
+                </div>
+                <div class="onoffswitch">
+                  <label class="onoffswitch-label block-switch">
+                    <input type="checkbox" name="onoff-switch" class="onoffswitch-checkbox btn pull-right" id="myonoffswitch" ng-class="{'btn-primary': vm.userSetting[sKey]}" ng-checked="vm.userSetting[sKey]" ng-click="vm.userSetting[sKey] = !vm.userSetting[sKey]; vm.saveUserSetting(vm.userSetting)">
+                    <span class="slider round"></span>
+                    <span class="block" ng-if="vm.userSetting[sKey]">On</span>
+                    <span class="allow">Off</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

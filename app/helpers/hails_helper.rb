@@ -1,0 +1,2 @@
+module HailsHelper
+end

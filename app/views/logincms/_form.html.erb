@@ -1,0 +1,21 @@
+<%= form_for(@logincm) do |f| %>
+  <% if @logincm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@logincm.errors.count, "error") %> prohibited this logincm from being saved:</h2>
+
+      <ul>
+      <% @logincm.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

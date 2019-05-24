@@ -1,0 +1,81 @@
+<!-- this is the wrapper for the content -->
+<div class="container st-content">
+
+  <!-- extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+    <div class="row questions-page">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 inner-question panel">
+        <div class="timeline-block">
+          <div class="">
+            <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2 left-question-list">
+              <div class="left-list-question">
+                <div class="item">
+                  <div class="btn-group" uib-dropdown is-open="status.isopen">
+                    <h2 class="main-head">Questions</h2>
+                    <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+                      <li ui-sref-active="active" role="menuitem"
+                        ng-repeat="radii in vm.radiuses">
+                        <a ui-sref="{radius: radii.id}"
+                          ui-sref-opts="{location:'replace'}">
+                          {{radii.value}}
+                        </a>
+                      </li>
+                      <li class="">
+                        <a ui-sref="questions" class="btn btn-gray btn-block">My Questions</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              <ul rn-carousel rn-carousel-controls dots="true" ng-show="vm.questions.length != 0">
+                <li ng-repeat="question in vm.questions | orderBy:'-id'" style="position: absolute !important;">
+                  <div class="jumbotron text-center jumbo-question slider-view">
+                    <div class="question-content">
+                       <ul class="user-info">
+                        <li ui-sref="user({id: question.user_id})"><div class="avatar-holder">
+                          <img ng-show="!question.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{question.top_category_id|profileImage}}" 
+                          alt="profile_image" style="border: 2px solid {{question.top_category_id|profileImageColor}}">
+                          <img ng-show="question.profilephoto" class="media-object img-circle chat-profile-icon"
+                          alt="profile_image" ng-src="{{question.profilephoto}}"
+                          style="border: 2px solid {{question.top_category_id|profileImageColor}}"></div></li>
+                        <li><a class="white-text" ui-sref="user({id: question.user_id})"><h4>{{question.username}}</h4></a></li>
+                        <li><a class="white-text" ui-sref="user({id: question.user_id})"><h4>{{question.radiicategory}}</h4></a></li>
+                        <li><p class="date-picker">{{question.created_at | date: "dd MMM yyyy"}}</p></li>
+                      </ul>
+                      <h4>{{question.text}}</h4>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="answer-title">Answer</div>
+                        <form ng-submit="vm.saveAnswer(question.id)">
+                          <div class="form-group">
+                            <textarea class="form-control"
+                              id = "answertext-{{question.id}}"
+                              ng-disabled="(question.answers|filter:{user_id: userInfo.id})[0].text != null">{{(question.answers|filter:{user_id: userInfo.id})[0].text}}</textarea>
+                          </div>
+                          <button class="btn btn-primary pull-right btn-send"
+                            ng-hide="(question.answers|filter:{user_id: userInfo.id})[0].text != null"
+                            >
+                            Send
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                </li>
+              </ul>
+              <div class="jumbotron text-center jumbo-question slider-view no-question" ng-show="vm.questions.length == 0">
+                <div class="question-content">
+                  <h1 >No questions found</h1>
+                </div>
+              </div>
+              <div class="empty-space-equal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

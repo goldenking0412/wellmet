@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="st-layout ls-top-navbar ls-bottom-footer" lang="en" ng-app="wm">
+
+<head>
+  <title>Meet the Most Interesting People | Make New Friends | Be Interesting</title>
+  <meta name="description" content="Looking for new friends? Meet people with the same interests around the corner or across the world. Start chatting for free today.">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <meta name="author" content="">
+  <!-- <meta name="referrer" content="no-referrer" /> -->
+
+  <link rel="canonical" href="https://www.wellmet.com/" />
+
+  <link rel="stylesheet" media="all" href="/css/fonts/proxima/fonts.css">
+  <link rel="stylesheet" media="all" href="/css/fonts/dkotago/font.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
+  <link rel="stylesheet" href="/css/vendor/assets/stylesheets/bootstrap.min.css">
+  <link href="/css/vendor/sidebar/angular-sidebarjs.css" rel="stylesheet">
+  <link href="/css/vendor/angular-carousel/angular-carousel.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+  <link href="/css/fonts/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+  <link href="/css/vendor/main.css" rel="stylesheet">
+  <link href="/css/vendor/style.css" rel="stylesheet">
+  <link href="/css/vendor/responsive.css" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/newtheme/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/newtheme/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/newtheme/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/newtheme/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/newtheme/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/newtheme/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/newtheme/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/newtheme/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/newtheme/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/images/newtheme/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/newtheme/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/newtheme/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/newtheme/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/images/newtheme/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/images/newtheme/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-86545292-1', 'auto');
+  </script>
+  <script src="bundle.js"></script>
+  <script src="/css/vendor/sidebar/angular-sidebarjs.js"></script>
+  <script src="/css/vendor/assets/javascripts/datetimepicker.js"></script>
+  <!-- <script src="/css/vendor/assets/javascripts/ngAutocomplete.js"></script> -->
+  <script src="/css/vendor/angular-carousel/angular-touch.min.js"></script>
+  <script src="/css/vendor/angular-carousel/angular-carousel.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxPXhX7mtb3M6eQxWc9qBqPcZj_YLqnY0&libraries=places"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script src="/css/vendor/assets/javascripts/requestAnimationFrame.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.content-link').click(function(hash) {
+        if(location.href.indexOf("faq") > -1)
+          {
+            hash.preventDefault();
+            title_page = "FAQ | Meet the Most Interesting People|Make friends ";
+            description = 'Free Online Chats, talk to strangers of the same interest and find friends online. Share thoughts and make your memorable moments with special people around.';
+            $('#meta_data_title').text(title_page);
+            $("#meta_desc").attr("content",description);
+          }
+        else
+          {
+          location.hash = "#" + hash;
+          title_page = "FAQ | Meet the Most Interesting People|Make friends ";
+          description = 'Free Online Chats, talk to strangers of the same interest and find friends online. Share thoughts and make your memorable moments with special people around.';
+          $('#meta_data_title').text(title_page);
+          $("#meta_desc").attr("content",description);
+          }
+        });
+      $('.term-link').click(function(hash) {
+        if(location.href.indexOf("terms") > -1)
+          {
+            hash.preventDefault();
+            title_page = "Chat with New People|Terms and Conditions| Meet People Online"
+            description = "Most importantly be kind and respectful.All content is moderated. Everything needs to be in good taste. Wellmet is all about tolerance and respect."
+            $('#meta_data_title').text(title_page);
+            $("#meta_desc").attr("content",description)
+
+          }
+        else
+          {
+          location.hash = "#" + hash;
+          title_page = "Chat with New People|Terms and Conditions| Meet People Online";
+          description = "Most importantly be kind and respectful.All content is moderated. Everything needs to be in good taste. Wellmet is all about tolerance and respect."
+            $('#meta_data_title').text(title_page);
+            $("#meta_desc").attr("content",description)
+          }
+        });
+      $('.policy-link').click(function(hash) {
+        if(location.href.indexOf("policy") > -1)
+          {
+            title_page = "Privacy Policies|Be Interesting|Chat with New People";
+            description = "Privacy policies for wellmet.com. We are the sole owners of the information collected on this site. We will not sell or rent this information to anyone."
+            $('#meta_data_title').text(title_page);
+            $("#meta_desc").attr("content",description)
+            hash.preventDefault();
+          }
+        else
+          {
+          location.hash = "#" + hash;
+          title_page = "Privacy Policies|Be Interesting|Chat with New People";
+          description = "Privacy policies for wellmet.com. We are the sole owners of the information collected on this site. We will not sell or rent this information to anyone."
+            $('#meta_data_title').text(title_page);
+            $("#meta_desc").attr("content",description)
+          }
+        });
+      });
+  </script>
+</head>
+
+<body ng-class="{'dialog-open' :stateChangeInProgress}">
+  <audio id="notificationSound">
+    <source src="/sounds/notification.mp3"></source>
+  </audio>
+  <!-- Wrapper required for sidebar transitions -->
+  <div class="overlay text-center custom-overlay" ng-show="stateChangeInProgress">
+    <div class="cssload-loader">
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+      <div class="cssload-side"></div>
+    </div>
+  </div>
+  <div class="st-container">
+    <!-- Fixed navbar -->
+
+    <div class="navbar navbar-main navbar-default navbar-fixed-top"
+      role="navigation"
+      ng-include="'shared/templates/header.html'" ng-if="Auth.isAuthenticated()">
+    </div>
+
+   <div class="navbar navbar-main navbar-default navbar-fixed-top"
+      role="navigation"
+      ng-include="'shared/templates/header.html'" ng-if="!Auth.isAuthenticated()">
+    </div>
+
+    <!-- sidebar effects OUTSIDE of st-pusher: -->
+    <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
+    <!-- content push wrapper -->
+    <div class="st-pusher" id="content" ui-view>
+    </div>
+    <!-- /st-pusher -->
+
+    <footer class="footer footer2">
+      <div>
+         <a href="https://www.facebook.com/Wellmet-560662187467137" class="facebook-footer">
+          <img src="/images/newtheme/facebook.png" alt="facebook-logo"></a>
+          <a id="help" ui-sref="home" ui-sref-opts="{reload: true}" class="footer-help" ng-if="!Auth.isAuthenticated()">Help</a>
+
+          <a id="help" ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}" class="footer-help" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">Help</a>
+
+          <a id="help" href="#!/help" class="footer-help" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">Help</a>
+
+          <a id="link" class="content-link" ui-sref="home" ui-sref-opts="{reload: true}" ng-if="!Auth.isAuthenticated()">FAQ</a>
+
+          <a id="link" ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}" class="content-link" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">FAQ</a>
+
+          <a id="link" class="content-link" href="#!/faq" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">FAQ</a>
+
+          <a ui-sref="home" ui-sref-opts="{reload: true}" class="term-link" ng-if="!Auth.isAuthenticated()">Terms & Conditions</a>
+
+          <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}" class="term-link" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">Terms & Conditions</a>
+
+
+          <a class="term-link" href="#!/terms" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">Terms & Conditions</a>
+
+          <a ui-sref="home" ui-sref-opts="{reload: true}" class="policy-link footer-privacy" ng-if="!Auth.isAuthenticated()">Privacy Policy</a>
+
+          <a ui-sref="user({id: Auth._currentUser.id})" ui-sref-opts="{reload: true}" class="policy-link footer-privacy" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==false">Privacy Policy</a>
+
+          <a href="#!/policy" class="policy-link footer-privacy" ng-if ="Auth.isAuthenticated() && Auth._currentUser.policy==true">Privacy Policy</a>
+      </div>
+      <div class="copy-rights">
+        <h5>Wellmet v2.0.0 &copy; Copyright 2018</h5>
+      </div>
+    </footer>
+  </div>
+  <!-- Footer -->
+  <!-- // Footer -->
+  <!-- /st-container -->
+</body>
+
+</html>

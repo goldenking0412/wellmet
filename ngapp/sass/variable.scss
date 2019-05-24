@@ -1,0 +1,169 @@
+$body-bg: #ffffff;
+$navbar-bg: #0052cc;
+$navbar: transparent;
+$dropdown: #f4f4f4;
+$option-font: #a2a2a2;
+$select-font: #000000;
+$login-border: #cccccc;
+$bar-border: #4D97AB;
+$signup-btn: #333333;
+$main-menu-color: #f2f2f2;
+$find-some-color: #1d1d1d;
+$find-some-color: #1d1d1d;
+$find-some-border: #efefef;
+$myprofile-color: #f2f2f2;
+$myprofile-hover: #ffffff;
+$header-dropdown: #808080;
+$header-dropdown-border: #f4f4f4;
+$find-some-background: linear-gradient(0deg, #F0F0F0 5%, #FFFFFF 75%);
+$reset-btn-bg: #ff6a28;
+$reset-head-color: #4c6e8a;
+$sidebar-head:#556080;
+$sidebar-list-bg:#f5f5f5;
+
+/* Signup Modal */
+$sign-modal-border: #e6e6e6;
+$sign-box-shadow: 0 2px 2px 0 rgba(153,153,153,0.50);
+
+/* Home Page Interest */
+$interest-bg: #edf2f6;
+$interest-btn-color: #7c7c7c;
+$interest-btn-border: #676869;
+$search-btn-color: #797979;
+$mobile-search-border: #f5f5f5;
+
+/* Home Page catagory List */
+$category-list-color: #000000;
+
+/* Signup Page Interest */
+
+$interest-border-color: #b8d0db;
+$next-btn: #ff6a28;
+$like-btn: #a5bcce;
+$table-head-bg: #edf2f6;
+$title-bg: #dce5ec;
+$field-bg: #0053cc;
+$interest-title: #617689;
+$list-field: #9aa4ae;
+$list-field-act: #d6eeff;
+$interest-head: #4C6E8A;
+
+/* Location settings page */
+
+$outer-border: #E6EBEF;
+$locate-btn-clr: #2e2e2e;
+$locate-btn-gradient: #F0F0F0;
+$locate-btn-border: #E0E0E0;
+$border-hover: #ACDCFF;
+$heading-clr: #4C6E8A;
+$img-border: #59a7e7;
+$content-border: #A2B2BF;
+$hail-btn: #ff6a28;
+
+/* Profile page */
+
+$profile-border: #DCE3E8;
+$profile-bg: #ffffff;
+
+
+$roboto-font: 'Roboto', sans-serif;
+$proxima-font: 'Proxima Nova';
+$poppins-font:'Poppins', sans-serif;
+
+$desktop:"only screen and (min-width:1200px) and (max-width:1319px)";
+$laptop-large:"only screen and (min-width:1280px) and (max-width:1319px)";
+$laptop-medium:"only screen and (min-width:992px) and (max-width:1199px)";
+$laptop-high:"only screen and (min-width:992px) and (max-width:1319px)";
+$laptop-small:"only screen and (min-width:1025px) and (max-width:1198px)";
+$min-320:"only screen and (min-width : 320px)";
+$max-320:"only screen and (max-width : 320px)";
+$max-370:"only screen and (max-width : 370px)";
+$max-319:"only screen and (min-width : 320px) and (max-width:360px)";
+$max-406:"only screen and (max-width : 406px)";
+$min-407:"only screen and (min-width : 407px)";
+$max-419:"only screen and (min-width : 420px) and (max-width:767px)";
+$min-361:"only screen and (min-width : 361px) and (max-width:767px)";
+$max-361:"only screen and (min-width : 361px) and (max-width:419px)";
+$max-380:"only screen and (max-width : 380px)";
+$max-368:"only screen and (max-width : 368px)";
+$max-420:"only screen and (max-width : 420px)";
+$min-420:"only screen and (min-width : 420px)";
+$mid-419:"only screen and (min-width : 380px) and (max-width:419px)";
+$mid-420:"only screen and (min-width : 420px) and (max-width:1024px)";
+$min-479:"only screen and (min-width : 361px) and (max-width:479px)";
+$mobi-small:"only screen and (min-width:480px) and (max-width:530px)";
+$mobile-small:"only screen and (min-width:420px) and (max-width:479px)";
+$max-479:"only screen and (max-width : 479px)";
+$max-500:"only screen and (max-width : 500px)";
+$max-575:"only screen and (max-width : 575px)";
+$max-585:"only screen and (max-width : 585px)";
+$min-585:"only screen and (min-width : 585px) and (max-width: 660px)";
+$max-600:"only screen and (max-width : 600px)";
+$min-601:"only screen and (min-width : 601px)";
+$min-679:"only screen and (max-width : 679px)";
+$min-620:"only screen and (max-width : 620px)";
+$min-600:"only screen and (min-width : 600px) and (max-width: 767px)";
+$min-421:"only screen and (min-width : 421px) and (max-width: 639px)";
+$min-640:"only screen and (min-width : 640px) and (max-width: 991px)";
+$min-481:"only screen and (min-width : 481px) and (max-width: 679px)";
+$min-480:"only screen and (min-width : 480px) and (max-width: 639px)";
+$min-680:"only screen and (min-width : 680px) and (max-width: 767px)";
+$max-680:"only screen and  (max-width : 680px)";
+$mix-419:"only screen and  (max-width : 419px)";
+$max-679:"only screen and (min-width : 585px) and (max-width: 679px)";
+$max-749:"only screen and  (min-width : 717px) and (max-width: 749px)";
+$max-716:"only screen and  (min-width : 521px) and (max-width: 716px)";
+$max-520:"only screen and  (max-width : 520px)";
+$min-520:"only screen and (min-width : 520px) and (max-width: 584px)";
+$max-519:"only screen and (min-width : 460px) and (max-width: 519px)";
+$max-459:"only screen and (min-width : 420px) and (max-width: 459px)";
+$min-381:"only screen and (min-width : 381px) and (max-width: 419px)";
+$maxis-749:"only screen and  (max-width : 749px)";
+$max-767:"only screen and  (max-width : 767px)";
+$min-768:"only screen and  (min-width : 768px)";
+$max-768:"only screen and (max-width:768px)";
+$mix-480:"only screen and (min-width : 480px) and (max-width: 584px)";
+$mix-380:"only screen and (min-width : 380px) and (max-width: 479px)";
+$mix-420:"only screen and (min-width : 420px) and (max-width: 479px)";
+$mis-380:"only screen and (min-width : 380px) and (max-width: 419px)";
+$max-725:"only screen and (min-width : 584px) and (max-width: 725px)";
+$max-893:"only screen and (min-width : 768px) and (max-width: 893px)";
+$max-850:"only screen and (min-width : 768px) and (max-width: 850px)";
+$min-850:"only screen and (min-width : 850px) and (max-width: 991px)";
+$max-991:"only screen and (min-width : 680px) and (max-width: 991px)";
+$max-991:"only screen and  (max-width : 991px)";
+$min-992:"only screen and  (min-width : 992px)";
+$max-1000:"only screen and  (max-width : 1000px)";
+$max-1024:"only screen and  (max-width : 1024px)";
+$max-labtop:"only screen and (min-width : 992px) and (max-width: 1023px)";
+$min-1025:"only screen and  (min-width : 1025px)";
+$max-1170:"only screen and (min-width : 601px) and (max-width: 1170px)";
+$max-1025:"only screen and (min-width : 1025px) and (max-width:1120px)";
+$max-1199:"only screen and  (max-width : 1199px)";
+$max-1080:"only screen and  (min-width:1024px) and (max-width : 1080px)";
+$min-1080:"only screen and  (min-width:1025px) and (max-width : 1080px)";
+$min-1060:"only screen and  (min-width:1025px) and (max-width : 1060px)";
+$min-1081:"only screen and  (min-width:1081px) and (max-width : 1130px)";
+$min-1131:"only screen and  (min-width:1131px) and (max-width : 1200px)";
+$min-702:"only screen and  (min-width:702px) and (max-width : 767px)";
+$max-701:"only screen and (max-width : 701px)";
+$min-1200:"only screen and (min-width : 1200px)";
+$max-1200:"only screen and (max-width : 1200px)";
+$min-1210:"only screen and (min-width : 1210px)";
+$max-1300:"only screen and (max-width : 1300px)";
+$min-1320:"only screen and (min-width : 1320px)";
+$min-1367:"only screen and (min-width : 1367px)";
+$max-1242:"only screen and (max-width : 1242px)";
+$tablet-view:"only screen and (min-width:768px) and (max-width:1024px)";
+$tablet-large-view:"only screen and (min-width:1024px) and (max-width:1279px)";
+$tablet-view-landscape:"only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape)";
+$tablet-view-small:"only screen and (min-width:768px) and (max-width:991px)";
+$tab-view-sm:"only screen and (min-width:750px) and (max-width:991px)";
+$tablet-med-view:"only screen and (min-width:1024px) and (max-width:1199px)";
+$mobile-view:"only screen and (min-width:480px) and (max-width:767px)";
+$mobile-view-small:"only screen and (min-width:320px) and (max-width:479px)";
+$tablet-view-medium:"only screen and (min-width:768px) and (max-width:1199px)";
+$tablet-medium-view:"only screen and (min-width:992px) and (max-width:1390px)";
+$tab-view-responsive:"only screen and (min-width:1001px) and (max-width:1199px)";
+$medium-screen:"only screen and (min-width:1025px) and (max-width:1199px)";
+$tab-view:"only screen and (min-width:1001px) and (max-width:1366px)";

@@ -1,0 +1,82 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content">
+
+  <!-- extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+    <div class="container category-findout interest-inpage custom-container">
+      <div class="interestin-container">
+        <div class="timeline rowcontainer" wm-isotope>
+          <div class="col-xs-12 col-sm-4 col-md-3 item">
+            <div class="timeline-block">
+              <div class="panel panel-default category-list">
+                <div class="panel-heading panel-heading-primary title">
+                  <img src="/images/categories/bgcategory/{{vm.category.image}}" class="game" alt={{vm.category.name}} />
+                  <a class="game-logo" ng-class="{'interest-added': vm.interest.added}"><img src="/images/categories/logos/{{vm.category.image}}" alt={{vm.category.name}} /></a>
+                </div>
+                <div class="panel-body text-black background-white content-flow">
+                  <h4 class="text-center game-title">{{vm.interest.name}}</h4>
+                  <div class="text-center total-interest-users">
+                    <p class="content-icons"><img src="/images/newtheme/view.png"  class="view text-center" alt="view" /><span>{{vm.interest.all_time_users_count|thousandSuffix}}</span></p>
+                    <p class="content-icons"><img src="/images/newtheme/like.png"  class="like text-center" alt="like" /><span>{{vm.interest.like_count|thousandSuffix}}</span></p>
+                    <p class="content-icons"><img src="/images/newtheme/unlike.png"  class="unlike text-center" alt="unlike" /><span>{{vm.interest.dislike_count|thousandSuffix}}</span></p>
+                    <p class="content-icons"><img src="/images/newtheme/message.png"  class="message text-center" alt="message" /><span>{{vm.interest.comments_count|thousandSuffix}}</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-block btn-addint"
+              ui-sref="user-interest-new({category_id: vm.interest.category_id, interest_id: vm.interest.id})"
+              ng-hide="!Auth.isAuthenticated() || vm.interest.added">
+              Add Interest
+            </a>
+            <br>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-9 user-interestarea">
+            <div class="row">
+              <div class="user-item col-xs-12 col-sm-12 col-md-6"
+                ng-repeat="userInterest in vm.userInterests"
+                ng-init="user = (vm.users|filter:{id: userInterest.user_id}:true)[0]">
+                <div class="timeline-block">
+                  <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-primary">
+                      <div class="media">
+                        <div class="interestin-img">
+                          <a ui-sref="user({id: user.id})" ng-if="Auth.isAuthenticated()">
+                            <img ng-if="!user.profilephoto" class="media-object" width="50" ng-src="/images/user/{{(categories|filter:{id: user.top_category_id}:true)[0].image}}"  width="50" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                            <img ng-if="user.profilephoto" class="media-object" ng-src="{{user.profilephoto}}" width="50" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                          </a>
+                          <a href="/" ng-if="!Auth.isAuthenticated()">
+                            <img ng-if="!user.profilephoto" width="50" class="media-object"
+                            ng-src="/images/user/{{(categories|filter:{id: user.top_category_id}:true)[0].image}}">
+                            <img ng-if="user.profilephoto" width="50" class="media-object" ng-src="{{user.profilephoto}}" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                          </a>
+                        </div>
+                        <div class="media-body interestin-usrarea">
+                          <h5>{{user.username}}</h5>
+                          <span am-time-ago="userInterest.created_at"></span>
+                        </div>
+                        <div class="interestin-usrhail">
+                          <a href="javascript:void(0)"
+                            class="pull-right text-muted"
+                            ng-if="Auth.isAuthenticated() && !user.hailed && userInfo.id != user.id && !user.blocked && user.hailable"
+                            ng-click="vm.hail(user)">
+                            <img src="/images/newtheme/hail.png" alt="hail"></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-body interestin-description">
+                      <p>{{userInterest.comment}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /st-content-inner -->
+
+</div>
+<!-- /st-content -->

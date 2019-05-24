@@ -1,0 +1,2 @@
+module BannerManagementsHelper
+end

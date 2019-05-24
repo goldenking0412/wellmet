@@ -1,0 +1,115 @@
+<!-- this is the wrapper for the content -->
+<!-- <div class="st-content" >
+extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+    <div class="container location">
+      <div class="timeline row">
+        <div class="col-sm-12 category-filter-page">
+          <div class="category-filter-right">
+            <div class="location-image-left">
+              <input name="location" ng-autocomplete class="input-text" required ng-model="vm.user.location" options="options" details="details" placeholder="" value="{{vm.user.location}}">
+              <span for="location" class="floating-label">current location</span>
+              <div class="location_icons">
+                <span ng-init="lol=lol" class="locate-me-btn"><a ng-click='current_location_update(vm.user.id, lol)' href="#"><img src="/images/newtheme/locate_filled.png" class="unhover-img">
+                <img src="/images/newtheme/locate_filled_hover.png" class="hover-img">
+                <span class="tooltiptext">current location</span>
+                </a></span>
+                <span class="location-search"><a ng-click="location_update(vm.user.id, vm.user.location)"  ui-sref-opts="{reload: true}" href="#"><img class="search-custom-location" src="/images/newtheme/magnifying-glass.png">
+                <img class="search-custom-location-hover" src="/images/newtheme/magnifying-glass_hover.png" class="search-location">
+                </a></span>
+              </div>
+            </div>
+            <button class="btn btn-primary locate" ui-sref="user-edit({id: vm.user.id, current_step: 6})">Go to find Settings</button>
+          </div>
+          <div class="col-xs-12">
+            <div class="alert alert-warning"
+              ng-show="vm.users.length == 0">
+              No users found matching the criteria
+            </div>
+          </div>
+          <div class="col-xs-12 panel-margin welmet-tab" ng-repeat="user in vm.users">
+            <div class="col-xs-12"  ng-if ="$index == 0 ">
+              <div>
+                <div class="panel-inner panel-shadow" >
+                  <div class="panel panel-default panel-color" ng-class="{hailing: user.hailing}">
+                    <div class="panel-body" ng-show="Auth.isAuthenticated()">
+                      <div class="media">
+                        <div class="user-head">
+                          <h6 class="text-center">User</h6>
+                        </div>
+                        <div class="user-head">
+                          <h6 class="text-center">User Name</h6>
+                        </div>
+                        <div class="user-head">
+                          <h6 class="text-center">Common Interests</h6>
+                        </div>
+                        <div class="user-head">
+                          <h6 class="text-center">Radius</h6>
+                        </div>
+                        <div class="user-head">
+                          <h6 class="text-center">Gender</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 clear-div">
+              <div class="panel-inner" ng-class="{active: user.hailing}" ng-hide="vm.users.length == 0">
+                <div class="panel panel-default panel-color active"
+                ng-class="{hailing: user.hailing}">
+                  <div class="panel-body panel-bcolor" ng-show="Auth.isAuthenticated() && user.user_setting.allow_to_locate_me">
+                    <div class="media">
+                      <div class="user-info user-style" ng-click="$state.go('user', { id: user.id })" ng-if="Auth.isAuthenticated()">
+                        <img ng-if="!user.profilephoto" class="media-object pointer-click img-section" width="40" src="/images/newtheme/user.png" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                        <img ng-if="user.profilephoto" class="media-object pointer-click img-section" width="40" src="{{user.profilephoto}}" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                      </div>
+                      <div class="user-info name-style">
+                        <p class="text-center">{{user.username}}</p>
+                      </div>
+                      <div class="user-info user-interest">
+                        <p class="text-center">{{user.common_interests_count}}<p>
+                      </div>
+                      <div class="user-info user-radius">
+                        <p class="text-center">{{user.radiicategory}}<p>
+                      </div>
+                      <div class="user-info user-gender">
+                        <p class="text-center text-capitalize">{{user.gender}}<p>
+                      </div>
+                    <div class="media-right media-middle" ng-show="Auth.isAuthenticated() && !user.hailed && !user.blocked && user.hailable">
+                      <img class="media-object pointer-click"
+                        width="40"
+                        src="/images/newtheme/hail.png"
+                        ng-click="user.hailing = !user.hailing">
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default panel-color hail-field"
+                ng-show="user.hailing">
+                  <div class="panel-body">
+                    <form ng-submit="vm.hail(user, hailMessage)">
+                      <div class="input-group">
+                        <input class="form-control form-style"
+                          ng-model="hailMessage"
+                          ng-disabled="user.hailingInProgress">
+                        <span class="input-group-btn">
+                          <button class="btn btn-primary hail-btn"
+                            type="submit"
+                            ng-disabled="user.hailingInProgress">
+                            Hail
+                          </button>
+                        </span>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+ 

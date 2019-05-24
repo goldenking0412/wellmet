@@ -1,0 +1,1 @@
+json.partial! 'answer', locals: { answer: @answer}

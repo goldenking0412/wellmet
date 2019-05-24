@@ -1,0 +1,12 @@
+<div class="modal-body">
+  <div class="alert alert-danger text-center">
+     <span class="alert-icon"><img src="/images/newtheme/danger.png" /></span>{{vm.interest.name}} already exists.
+  </div>
+  <div class="row">
+    <div class="successmod-btn">
+      <button class="btn btn-orange" type="button" ng-click="$state.go($state.current, $state.params, {reload: true}) && vm.scrollup()">
+        OK
+      </button>
+    </div>
+  </div>
+</div>

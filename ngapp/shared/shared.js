@@ -1,0 +1,58 @@
+import angular from 'angular';
+import Category from './services/category';
+import BannerManagement from './services/banner_management';
+import Logincm from './services/logincm';
+import Message from './services/message';
+import Question from './services/question';
+import UserInterestShare from './services/user-interest-share';
+import Interest from './services/interest';
+import UserSetting from './services/user-setting';
+import Hail from './services/hail';
+import Answer from './services/answer';
+import Page from './services/page';
+import UserInterest from './services/user-interest';
+import Notifications from './services/notifications';
+import User from './services/user';
+import UserBlock from './services/user-block';
+import signInModal from './directives/sign-in-modal/sign-in-modal';
+import wmIsotope from './directives/wm-isotope/wm-isotope';
+import thousandSuffix from './filters/thousand-suffix';
+import profileImage from './filters/profile-image';
+import profileImageColor from './filters/dominant-circle';
+import Months from './constants/months';
+import Years from './constants/years';
+import Ages from './constants/ages';
+
+require('./templates/header.html');
+require('./templates/about-side-panel.html');
+require('./templates/add-interest-side-panel.html');
+require('./templates/add-interest-panel.html');
+require('./templates/user-sub-menu.html');
+
+var shared = angular.module('wm.shared',[]);
+
+shared.constant('Months', Months);
+shared.constant('Years', Years);
+shared.constant('Ages', Ages);
+shared.service('Category', Category);
+shared.service('BannerManagement', BannerManagement);
+shared.service('Logincm', Logincm);
+shared.service('Question', Question);
+shared.service('UserInterestShare', UserInterestShare);
+shared.service('Message', Message);
+shared.service('Interest', Interest);
+shared.service('Hail', Hail);
+shared.service('UserInterest', UserInterest);
+shared.service('User', User);
+shared.service('Page', Page);
+shared.service('Answer', Answer);
+shared.service('UserBlock', UserBlock);
+shared.service('UserSetting', UserSetting);
+shared.service('Notifications', Notifications);
+shared.filter('thousandSuffix', thousandSuffix);
+shared.filter('profileImage', profileImage);
+shared.filter('profileImageColor', profileImageColor);
+shared.directive('signInModal', signInModal);
+shared.directive('wmIsotope', wmIsotope);
+
+export default 'wm.shared';

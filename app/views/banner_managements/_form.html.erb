@@ -1,0 +1,41 @@
+<%= form_for(@banner_management) do |f| %>
+  <% if @banner_management.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@banner_management.errors.count, "error") %> prohibited this banner_management from being saved:</h2>
+
+      <ul>
+      <% @banner_management.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br>
+    <%= f.number_field :position %>
+  </div>
+  <div class="field">
+    <%= f.label :heading %><br>
+    <%= f.text_field :heading %>
+  </div>
+  <div class="field">
+    <%= f.label :subtitle1 %><br>
+    <%= f.text_field :subtitle1 %>
+  </div>
+  <div class="field">
+    <%= f.label :subtitle2 %><br>
+    <%= f.text_field :subtitle2 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

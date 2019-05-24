@@ -1,0 +1,130 @@
+<!-- this is the wrapper for the content -->
+<div class="st-content">
+
+  <!-- extra div for emulating position:fixed of the menu -->
+  <div class="st-content-inner">
+    <div class="profile-section">
+      <div class="container profile-container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-3 profile-sidebar">
+            <div class="cover profile" ng-include="'shared/templates/user-sub-menu.html'"></div>
+          </div>
+          <div class="col-xs-12 col-sm-8 col-md-9 profile-rightsection" wm-isotope>
+            <div class="timeline row">
+              <div class="col-sm-12">
+                <div class="timeline-block">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <div class="title">
+                        Add New Question
+                      </div>
+
+                      <div class="alert alert-danger alert-dismissible"
+                        ng-repeat="error in vm.errors track by $index">
+                        <button type="button"
+                          class="close"
+                          ng-click="vm.errors.splice($index, 1)">
+                          &times;
+                        </button>
+                        {{error}}
+                      </div>
+                      <form ng-submit="vm.saveQuestion()">
+                        <div class="form-group">
+                          <textarea class="form-control"
+                            row="5"
+                            ng-model="vm.question.text">
+                          </textarea>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-3 col-xs-offset-9">
+                            <button type="submit"
+                              class="btn next-btn"
+                              ng-disabled="!vm.question.text">
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div ng-repeat="question in vm.questions" ng-init="color = randomCategoryColor() || '#FF9673'">
+                  <div class="timeline-block">
+                  <div class="panel panel-default question">
+                    <div class="panel-body text-white">
+                      <span class="question-text"><h3>{{question.text}}</h3></span>
+                      <span class="question-iconss"><i class="fa fa-trash-o pointer-click quesdelete-icon"
+                      ng-click="vm.questionToDelete = question; vm.openDeleteQuestionConfirmModal()">
+                      </i>
+                      <button class="btn btn-link" ng-click="vm.isCollapsed(question.id)" ng-show="(vm.answers|filter:{question_id: question.id}:true)[0]" ng-class="{open: (vm.collapsed === question.id && isCollapsed)}"><i class="fa fa-caret-down" aria-hidden="true"></i></button></span>
+                      <br>
+                    </div>
+                    <div ng-show="vm.collapsed === question.id && isCollapsed">
+                      <ul class="comments">
+                        <li class="media"
+                          ng-repeat="answer in vm.answers|filter:{question_id: question.id}:true"
+                          ng-init="user = (vm.users|filter:{id: answer.user_id}:true)[0]">
+                          <div class="media-left">
+                            <div class="combine">
+                              <a ui-sref="user({id: user.id})" class="question-avatar">
+                                <img ng-show="!user.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{user.top_category_id|profileImage}}" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                                <img ng-show="user.profilephoto" class="media-object img-circle chat-profile-icon" ng-src="{{user.profilephoto}}" style="border: 2px solid {{user.top_category_id|profileImageColor}}">
+                              </a>
+                              <div class="author-detail">
+                                <a ui-sref="user({id: user.id})"
+                                  class="comment-author">
+                                  {{user.username}}
+                                </a>
+                                <div class="comment-date" am-time-ago="answer.created_at"></div>
+                              </div>
+                            </div>
+                            <a class="btn count-icon">
+                              <img src="/images/newtheme/batch.png">
+                              <span class="count-down"><span>{{user.points}}</span></span>
+                            </a>
+                            <a class="btn karma-icon" ng-click="vm.appreciate(answer,user)"
+                                ng-class="{disabled: answer.appreciated}">
+                              <img ng-src="{{answer.appreciated ? '/images/newtheme/karma-active.png' : '/images/newtheme/karma.png'}}">
+                            </a>
+                            <a class="btn" ng-click="user.hailing = !user.hailing" ng-show="Auth.isAuthenticated() && !user.hailed && !user.blocked && user.hailable"><img src="/images/newtheme/hail.png"></a>
+                          </div>
+                          <div class="media-body answers-drop">
+                            <span class="answer-text">{{answer.text}}</span>
+                            <span class="answer-iconss">
+                              <i class="fa fa-trash-o pointer-click ansdelete-icon"
+                                ng-click="vm.answerToDelete = answer; vm.openDeleteAnswerConfirmModal()">
+                              </i>
+                            </span>
+                          </div>
+                          <div class="panel panel-default panel-color hail-field" ng-show="user.hailing">
+                            <div class="panel-body">
+                              <form ng-submit="vm.hail(user, hailMessage)" class="ng-pristine ng-valid">
+                                <div class="input-group hailing-sec">
+                                  <input class="form-control form-style hailing-input ng-pristine ng-untouched ng-valid ng-empty" ng-model="hailMessage" ng-disabled="user.hailingInProgress">
+                                  <span class="input-group-btn hail-sendingsec">
+                                    <button class="btn btn-primary hail-btn" type="submit" ng-disabled="user.hailingInProgress">
+                                    Send
+                                    </button>
+                                  </span>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /st-content-inner -->
+
+</div>
+<!-- /st-content -->

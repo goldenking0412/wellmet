@@ -1,0 +1,16 @@
+<div class="modal-body">
+  <img src="/images/newtheme/success-check.png" class="successbox">
+  <div class="modal-section">
+    <h4>Success</h4>
+    <p>Hailed {{vm.hailingUser.username}}</p>
+  </div>
+  <div class="row">
+    <div class="successmod-btn">
+      <button class="btn btn-green"
+        type="button"
+        ng-click="$state.go($state.current, $state.params, {reload: true})">
+        OK
+      </button>
+    </div>
+  </div>
+</div>

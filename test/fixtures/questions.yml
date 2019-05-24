@@ -1,0 +1,6 @@
+who_am_i:
+  user: batman
+  text: Who am I?
+where_do_i_live:
+  user: batman
+  text: 'Where do I live?'

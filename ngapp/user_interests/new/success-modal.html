@@ -1,0 +1,26 @@
+<div class="modal-body">
+  <img src="/images/newtheme/success-check.png" class="successbox">
+  <div class="modal-section" ng-hide="Auth.isAuthenticated() && vm.user.policy == false">
+    <h4>Success</h4>
+    <p>Added {{vm.interest.name}} to your profile.</p>
+  </div>
+  <div class="modal-section" ng-show="Auth.isAuthenticated() && vm.user.policy == false">
+    <p>Update Personal Information.</p>
+  </div>
+  <div class="row">
+    <div class="successmod-btn" ng-hide="Auth.isAuthenticated() && vm.user.policy == false">
+      <button class="btn btn-green"
+        type="button"
+        ng-click="$state.go($state.current, $state.params, {reload: true}) && vm.scrollup()">
+        OK
+      </button>
+    </div>
+    <div class="successmod-btn" ng-show="Auth.isAuthenticated() && vm.user.policy == false">
+      <button class="btn btn-green"
+        type="button"
+        ui-sref="user-update({id: userInfo.id, interest_id: vm.interest.id, comment: vm.comment, like: vm.like})" ui-sref-if="Auth.isAuthenticated() && Auth._currentUser.provider">
+        Go
+      </button>
+    </div>
+  </div>
+</div>
