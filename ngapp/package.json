@@ -13,7 +13,7 @@
   "author": "",
   "license": "Proprietary",
   "devDependencies": {
-    "angular": "^1.4.8",
+    "angular": "^1.8.0",
     "angular-moment": "^0.10.3",
     "angular-sanitize": "^1.4.8",
     "angular-ui-bootstrap": "^2.5.6",
