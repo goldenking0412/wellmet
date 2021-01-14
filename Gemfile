@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 3.4.1'
 
-gem 'rails_admin', '~> 1.2'
+gem 'rails_admin', '~> 1.4'
 
 gem 'omniauth'
 
